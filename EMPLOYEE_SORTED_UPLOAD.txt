@@ -1,0 +1,226 @@
+package SinglyLinkedList.employee;
+
+import java.util.Scanner;
+
+public class EmployeeLinkedList {
+
+    private employee head;
+    Scanner sc = new Scanner(System.in);
+
+    public employee createNode() {
+        System.out.println("Enter Employee ID: ");
+        int empid = sc.nextInt();
+        System.out.println("Enter Employee Name: ");
+        String name = sc.next();
+        System.out.println("Enter Salary: ");
+        double salary = sc.nextDouble();
+
+        return new employee(empid, name, salary);
+    }
+
+    public void setHead(employee newNode) {
+        head = newNode;
+    }
+
+    public void display() {
+        employee temp = head;
+        if (temp == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+
+        System.out.println("Employees in the list:");
+        while (temp != null) {
+            System.out.print("[" + temp.getEmpid() + ", " + temp.getName() + ", " + temp.getSalary() + "] -> ");
+            temp = temp.getNext();
+        }
+        System.out.println("null");
+    }
+
+    public void add(employee newNode) {
+        if (head == null || newNode.getEmpid() < head.getEmpid()) {
+            newNode.setNext(head);
+            head = newNode;
+            return;
+        }
+
+        employee current = head;
+        while (current.getNext() != null && current.getNext().getEmpid() < newNode.getEmpid()) {
+            current = current.getNext();
+        }
+
+        newNode.setNext(current.getNext());
+        current.setNext(newNode);
+    }
+
+    public int count() {
+        int count = 0;
+        employee temp = head;
+        while (temp != null) {
+            count++;
+            temp = temp.getNext();
+        }
+        return count;
+    }
+}
+
+
+///////////////////////////////////////////////////////
+*******************************************************
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+package SinglyLinkedList.employee;
+
+public class employee {
+
+    private int empid;
+    private String name;
+    private double salary;
+    private employee next;
+
+    public employee() {
+        empid = 0;
+        name = "";
+        salary = 0;
+        next = null;
+    }
+
+    public employee(int empid, String name, double salary) {
+        this.empid = empid;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public int getEmpid() {
+        return empid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setNext(employee newNode) {
+        next = newNode;
+    }
+
+    public employee getNext() {
+        return next;
+    }
+}
+
+
+
+///////////////////////////////////////////////////////////
+***********************************************************
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+package SinglyLinkedList.employee;
+
+import java.util.Scanner;
+
+public class MainClass {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        EmployeeLinkedList list = new EmployeeLinkedList();
+
+        int choice;
+        do {
+            System.out.println("\n==== Employee Linked List Menu ====");
+            System.out.println("1. Create Node");
+            System.out.println("2. Set Head");
+            System.out.println("3. Display Employees");
+            System.out.println("4. Add Employee");
+            System.out.println("5. Count Employees");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    employee node = list.createNode();
+                    System.out.println("Node created.");
+                    break;
+
+                case 2:
+                    employee newHead = list.createNode();
+                    list.setHead(newHead);
+                    System.out.println("Head set successfully.");
+                    break;
+
+                case 3:
+                    list.display();
+                    break;
+
+                case 4:
+                    employee newEmp = list.createNode();
+                    list.add(newEmp);
+                    System.out.println("Employee added in sorted order.");
+                    break;
+
+                case 5:
+                    int total = list.count();
+                    System.out.println("Total Employees: " + total);
+                    break;
+
+                case 0:
+                    System.out.println("Exiting...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 0);
+
+        sc.close();
+    }
+}
+
+
+
+
+////////////////////////////////////////////////////////////
+***********************************************************
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+package SinglyLinkedList.employee;
+
+public class Node {
+		private employee e;
+		private Node next;
+		
+		public Node()
+		{
+			e = null;
+			next = null;
+		}
+		
+		public void setData(employee e)
+		{
+			this.e = e;
+		}
+		
+		public employee getData()
+		{
+			return e;
+		}
+		
+		public void setNext(Node newNode)
+		{
+			next = newNode;
+		}
+		
+		public Node getNext()
+		{
+			return next;
+		}
+		
+	}//node

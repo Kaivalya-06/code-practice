@@ -1,0 +1,197 @@
+package DoublyLL;
+
+import java.util.Scanner;
+
+public class DoublyLinkedListImplemention {
+	class Node{
+		int data;
+		Node next;
+		Node prev;
+		
+		Node(int v){
+			data=v;
+		}
+		
+	}
+	
+	Node head=null,tail=null;
+//	
+//	public void append(int val) {
+//		Node newnode=new Node(val);
+//		if(head==null) {
+//			head=tail=newnode;
+//		}
+//		tail.next=newnode;
+//		tail.prev=tail;
+//		tail=newnode;
+//	}
+//	
+	
+	public void AddToStart(int val) {
+		Node newNode= new Node(val);
+		if(head==null) {
+			head=tail=newNode;
+		}		
+		else {
+			newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+			}
+	}
+	
+	public void AddToEnd(int val) {
+		Node newNode = new Node(val);
+		if(head==null) {
+			head=tail=newNode;
+		}
+		tail.next = newNode;
+        newNode.prev = tail;
+        tail = newNode;
+	}
+	
+	public void AddAtPosition(int pos,int val) {
+		if(pos<=0) return;
+		if(pos==1) {
+			AddToStart(val);
+			return;
+		}
+		
+		Node temp = head;
+		for(int i=1;i<pos-1 && temp!=null;i++) {
+			temp=temp.next;
+		}
+		if(temp==null) return;
+		
+		Node newNode=new Node(val);
+		newNode.next=temp.next;
+		if(temp.next!=null) {
+			temp.next.prev =newNode;
+		}
+		temp.next=newNode;
+		newNode.prev=temp;
+		
+	}
+	
+	public void deleteFront() {
+		if (head == null) return;
+		head = head.next;
+		if (head != null)
+		head.prev = null;
+		}
+	
+	public void deleteEnd() {
+		if(tail==null)return;
+		if(head==tail) {
+			head=null;
+			tail=null;
+		}
+		else {
+			tail=tail.prev;
+			tail.next= null;
+		}
+	}
+	
+	public void deleteByPosition(int pos) {
+		if(pos<=0) return;
+		if(pos==1) {
+			deleteFront();
+			return;
+		}
+		
+		Node temp =head;
+		int count=1;
+		while(temp!=null && count<pos ) {
+			temp=temp.next;
+			count++;
+		}
+		if(temp==null) return;
+		if(temp.next==null) {
+			deleteEnd();
+			return;
+		}
+		temp.prev.next=temp.next;
+		temp.next.prev=temp.prev;
+		
+		
+	}
+	void display() {
+		Node temp = head;
+		while (temp != null) {
+		System.out.print(temp.data + " <-> ");
+		temp = temp.next;
+		}
+		
+		System.out.println("null");
+		}
+
+
+	public static void main(String[] args) {
+		
+		DoublyLinkedListImplemention ds = new DoublyLinkedListImplemention();
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+            System.out.println("\n--- Doubly Linked List Menu ---");
+            System.out.println("1. Add At Start");
+            System.out.println("2. Add At End");
+            System.out.println("3. Add By Position");
+            System.out.println("4. delete At Start");
+            System.out.println("5. delete At End");
+            System.out.println("6. delete By Position");
+            System.out.println("7. Display");
+            System.out.println("8. Exit");
+            System.out.print("Enter your choice: ");
+            
+            int choice = scanner.nextInt();
+            
+            switch (choice) {
+            
+            case 1:
+            	System.out.println("enter value");
+            	int v1 = scanner.nextInt();
+            	ds.AddToStart(v1);
+            	break;
+            case 2:
+            	System.out.println("enter value");
+            	int v2 = scanner.nextInt();
+            	ds.AddToEnd(v2);
+            	break;
+            case 3:
+            	System.out.println("enter position");
+            	int p1=scanner.nextInt();
+            	System.out.println("enter value");
+            	int v3=scanner.nextInt();
+            	ds.AddAtPosition(p1, v3);
+            	break;
+            case 4:
+            	ds.deleteFront();
+            	System.out.println("deleted Node...");
+            	break;
+            case 5:
+            	ds.deleteEnd();
+            	System.out.println("deleted Node....");
+            	break;
+            case 6:
+            	System.out.println("enter position to delete node");
+            	int p2=scanner.nextInt();
+            	ds.deleteByPosition(p2);
+            	break;
+            case 7:
+            	ds.display();
+            	break;
+            case 8:
+            	System.exit(0);
+            default:
+                System.out.println("Invalid choice! Try again.");
+            	
+            	
+            	
+            
+            
+            }
+            
+		}
+		
+
+	}
+
+}

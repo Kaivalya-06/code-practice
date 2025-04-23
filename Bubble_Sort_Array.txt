@@ -1,0 +1,102 @@
+//////PROGRAM///////
+
+package BubbleSorting;
+
+import java.util.Scanner;
+
+public class BubbleSorting {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of List:: ");
+		int size = sc.nextInt();
+		int val,temp,swap_no = 0,pass_no = 0;
+		
+		int[] arr = new int[size];
+		System.out.println("Enter the nubers to add :: ");
+		for(int i=0;i<size;i++)
+		{
+			arr[i] = (val = sc.nextInt());
+		}
+		System.out.println("\n\t*************************\n");
+		
+		for(int i=0;i<size-1;i++)
+		{
+			for(int j=0;j<size-i-1;j++)
+			{
+				if(arr[j] > arr[j+1])
+				{
+					temp = arr[j];
+					arr[j] = arr[j+1];
+					arr[j+1] = temp;
+					swap_no++;
+				}
+				System.out.println(arr[j]);
+//				System.out.println("Swap  Count = "+swap_no);	
+			}
+			System.out.println("\n\t*************************\n");
+			pass_no++;
+		}
+		System.out.println("\n\t***********************\n");
+		
+		
+		for(int i=0;i<size;i++)
+		{
+			System.out.print(arr[i]+" ");
+		}
+		System.out.println("\n\t***********************\n");
+		System.out.println("Swao no :: "+swap_no);
+		System.out.println("Pass no :: "+pass_no);
+
+	}
+
+}
+
+
+
+
+
+	/////////OUTPUT//////////
+
+Enter the size of List:: 
+5
+Enter the nubers to add :: 
+8
+25
+12
+-1
+3
+
+	*************************
+
+8
+12
+-1
+3
+
+	*************************
+
+8
+-1
+3
+
+	*************************
+
+-1
+3
+
+	*************************
+
+-1
+
+	*************************
+
+
+	***********************
+
+-1 3 8 12 25 
+	***********************
+
+Swao no :: 7
+Pass no :: 4

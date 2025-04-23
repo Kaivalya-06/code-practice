@@ -1,0 +1,157 @@
+package StackPackage;
+
+import java.util.Scanner;
+
+public class StringStackReverse {
+	
+	
+Scanner sc = new Scanner(System.in);
+	
+	private int size;
+	private int top1;
+	private int top2;
+	private char[] stk;
+	
+	public  StringStackReverse()
+	{
+		size = 0;
+		top1 = -1;
+		top2 = size;
+		stk = new char[size];
+	}
+	
+	public void initstack(int size) 
+	{
+		stk = new char[size];
+		top1 = -1;
+		top2 = size;
+	}//initialize stack
+	
+	/*-------------------------------------------*/
+	
+	public boolean is_Full()
+	{
+		if(top2 == top1+1)
+			return true;
+		else
+			return false;
+	}//is full
+	
+	/*-------------------------------------------------*/
+	
+	public boolean is_Empty()
+	{
+		if(top2 == size && top1 == -1)
+			return true;
+		else
+			return false;
+	}//is empty
+	
+	/*--------------------------------------------------*/
+	
+	public void push1(char val)
+	{
+		if(!is_Full())
+		{
+			top1++;
+			stk[top1]=val;
+		}
+	}//push 1
+	
+	/*---------------------------------------------------*/
+	
+	public void push2(char val)
+	{
+		if(!is_Full())
+		{
+			top2++;
+			stk[top2] = val;				
+		}
+	}//push 2
+	
+	/*------------------------------------------------------*/
+	
+	public int pop1()
+	{
+		int val = -1;
+		if(!is_Empty()&& top1 == -1)
+		{
+			val = stk[top1];
+			top1--;
+		}
+		else
+			System.out.println("Stack is Empty......");
+		return val;
+	}//pop 1
+	
+	/*--------------------------------------------------------*/
+	
+	public int pop2()
+	{
+		int val = -1;
+		if(!is_Empty() && top2 == size)
+			val = stk[top2];
+		else
+			System.out.println("Stack is Empty.......");
+		return val;
+	}//pop 2
+	
+	/*------------------------------------------------------*/
+	
+	public void display()
+	{
+		if(!is_Empty())
+		{
+			for(int i = top1 ;i>-1;i--)
+				System.out.println(stk[i]);
+			for(int i = top2;i<size;i++)
+				System.out.println(stk[i]);
+		}
+		else
+			System.out.println("Empty...........");
+	}
+	public static void main(String[] args) {
+		StringStackReverse sct = new StringStackReverse();
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int option = 0;
+		String value="";
+		
+		do {
+			System.out.println("********MENU*****************");
+			System.out.println("\n 1.push"+
+								"\n 2.display"+
+								"\n 0.exit");
+			System.out.println("Enter your Choice: ");
+			option = sc.nextInt();
+			
+			switch (option) {
+			case 1 :{
+				System.out.println("Enter values for stack1: ");
+				value = sc.next();
+				
+				int size = value.length();
+				sct.initstack(size*2);
+				System.out.println("New Stack Added...");
+				
+				for(int i=0;i<value.length();i++) {
+				sct.push1(value.charAt(i));
+				}
+				
+				for(int i=value.length()-1;i>=0;i--) {
+					sct.push2(value.charAt(i));
+				}
+				break;
+			}
+			case 2:{
+				sct.display();
+				break;
+			}
+			case 0:{
+				System.exit(0);
+			}
+		}
+		} while(option != 0);
+	}
+}

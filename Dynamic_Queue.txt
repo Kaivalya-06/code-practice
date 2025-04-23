@@ -1,0 +1,171 @@
+package Dynamic_Queue;
+
+import SinglyLinkedList.Node;
+
+public class Queue_using_Linked_list {
+	
+	private Node front;
+	private Node rear;
+	
+	public Queue_using_Linked_list()
+	{
+		front = null;
+		rear = null;
+	}
+	
+	public Node createNode(int val)
+	{
+		Node newNode = new Node();
+		
+		newNode.setData(val);
+		newNode.setNext(null);
+		return newNode;
+	}
+	
+	public boolean isEmpty()
+	{
+		if(front==rear)
+			return true;
+		else
+			return false;
+	}
+	
+	public void Enqueue(int a)
+	{
+		Node newNode = createNode(a);
+		if(rear == null)
+		{
+			front = rear = newNode;
+		}
+		else {
+			rear.setNext(newNode);
+			rear = newNode;
+		}
+	}
+	
+	public int deQueue()
+	{
+		int val = -1;
+		if(front!=null)
+		{
+			val = front.getData();
+			front = front.getNext();
+		}
+		else {
+				System.out.println("\n.......Queue Is Empty.........\n");
+		}
+		return val;
+	}
+	
+	public void display()
+	{
+		Node temp = front;
+		while(temp != null)
+		{
+			System.out.print(temp.getData()+"->");
+			temp = temp.getNext();
+		}
+		System.out.println("null.");
+	}
+
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////
+*****************************************************************
+/////////////////////////////////////////////////////////////////
+
+		MAIN CLASS
+
+package Dynamic_Queue;
+
+import java.util.Scanner;
+
+public class Dynamic_Queue_Main {
+	
+	public static void main(String[] args)
+	{
+		
+
+		Queue_using_Linked_list qull = new Queue_using_Linked_list();
+		Scanner sc = new Scanner(System.in);
+		int choice = 0;
+		
+		
+		do 
+		{
+			System.out.println("\n\t...............MENU.............."+
+								"\n\t1) EnQueue."+
+								"\n\t2) DeQueue."+
+								"\n\t99) Display"+
+								"\n\t0) Exit");
+			System.out.println("Enter the choice :: ");
+			choice = sc.nextInt();
+			
+			switch (choice) 
+			{
+			case 0:
+					System.exit(0);
+					break;
+			
+			case 1:
+					System.out.println("\nEnter the value to insert:: \n");
+					int val1 = sc.nextInt();
+					qull.Enqueue(val1);
+					break;
+			case 2:
+					System.out.println("Popped Element :: "+qull.deQueue());
+					break;
+			
+			case 99:
+					System.out.println("\n--------------------------------------------");
+					qull.display();
+					System.out.println("\n--------------------------------------------");
+					break;
+			}	
+		}while(choice != 0);
+	}
+}
+
+
+////////////////////////////////////////////////////
+****************************************************
+///////////////////////////////////////////////////
+
+			NODE
+
+package Dynamic_Queue;
+
+public class Node {
+	private int data;
+	private Node next;
+	
+	public Node()
+	{
+		data = 0;
+		next = null;
+	}
+	
+	public void setData(int value)
+	{
+		data = value;
+	}
+	
+	public int getData()
+	{
+		return data;
+	}
+	
+	public void setNext(Node newNode)
+	{
+		next = newNode;
+	}
+	
+	public Node getNext()
+	{
+		return next;
+	}
+	
+}//node

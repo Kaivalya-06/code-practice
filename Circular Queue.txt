@@ -1,0 +1,167 @@
+package Circular_Queue_Package;
+
+import java.util.Scanner;
+
+public class Circular_Queue {
+	
+	Scanner sc = new Scanner(System.in);
+	
+	private int front;
+	private int rear;
+	private int[] queue;
+	private int size;
+	
+	public Circular_Queue()
+	{
+		size = 0;
+		front = rear = -1;
+		queue = new int[size];
+	}
+	
+	/*---------------------------------------------------------*/
+	
+	public void initQueue()
+	{
+		System.out.println("Enter the size of array :: ");
+		size = sc.nextInt();
+		queue = new int[size];
+		front = rear = -1;
+	}//initQueue
+	
+	/*-----------------------------------------------------------*/
+	
+	public boolean isFull()
+	{
+		if(front == -1 && rear == size-1 || front == (rear+1)%size)
+			return true;
+		else
+			return false;
+	}//is Full
+	
+	/*--------------------------------------------------------------*/
+	
+	public boolean isEmpty()
+	{
+		if(front == rear)
+			return true;
+		else
+			return false;
+	}//is Empty
+	
+	/*---------------------------------------------------------------*/
+	
+	public void enQueue(int value)
+	{
+		if(!isFull())
+		{
+			rear = (rear+1)%size;
+			queue[rear] = value;
+		}
+		else
+			System.out.println("...............Queue Is Full.............");
+	}//enQueue
+	
+	/*--------------------------------------------------------------------*/
+	
+	public int deQueue()
+	{
+		int value = -1;
+		
+		if(!isEmpty())
+		{
+			front = (front+1)%size;
+			value = queue[front];
+		}
+		else
+			System.out.println("..............Queue Is Empty................");
+		return value;
+	}//deQueue
+	
+	/*-------------------------------------------------------------------*/
+	
+	public void display()
+	{
+		int i;
+		if(!isEmpty())
+		{
+			for(i = front+1;i != rear;i = (i+1)%size)
+			{
+				System.out.print("\t"+queue[i]);
+			}
+			System.out.print("\t"+queue[rear]);
+		}
+		else
+			System.out.println("....Queue Is Empty....");
+		
+	}//display
+
+}//class
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+package Circular_Queue_Package;
+
+import java.util.Scanner;
+
+public class Circular_queue_Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		Circular_Queue cq = new Circular_Queue();
+		int choice = 0;
+		
+		do {
+			
+			System.out.println("\n\t 1-> Initialize The Queue."+
+								"\n\t 2-> Insert Into Queue."+
+								"\n\t 3-> Delete From Queue."+
+								"\n\t 4-> Display The Queue."+
+								"\n\t 0-> Exit From Program.");
+			
+			System.out.println("\nEnter Your Choice :: ");
+			choice = sc.nextInt();
+			
+			switch (choice) {
+			case 0:
+					System.out.println(".........Exitig..........");
+					System.exit(0);
+					break;
+			case 1:
+					cq.initQueue();
+					break;
+			case 2:
+					System.out.println("Enter the Value :: ");
+					cq.enQueue(sc.nextInt());
+					break;
+			case 3:
+					System.out.println("Deleted Element Is :: "+cq.deQueue());
+					break;
+			case 4:
+					cq.display();
+					break;
+			}
+			
+		}while(choice != 0);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

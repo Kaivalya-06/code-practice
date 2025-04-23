@@ -1,0 +1,139 @@
+package QueuePackage;
+
+import java.util.Scanner;
+
+public class QueueArray {
+
+	private int size;
+	private int que[];
+	private int front;
+	private int rear;
+	
+    Scanner sc = new Scanner(System.in);
+	
+	public QueueArray()
+	{
+		size=0;
+		que = new int[size];
+		front = rear = -1;
+	}
+	
+	public void initQueue()
+	{
+		System.out.println("Enter size of the queue:: ");
+		size=sc.nextInt();
+		que = new int[size];
+		front = rear = -1;
+	}
+	
+	public boolean isFull()
+	{
+		if(rear == size-1 )
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isEmpty()
+	{
+		if(front==rear)
+			return true;
+		else
+			return false;
+	}
+	
+	public void enQueue(int value)
+	{
+		if(!isFull() )
+		{
+			que[++rear] = value;			
+		}
+		else
+			System.out.println("Error: Queue is full");
+	}
+	
+	public int deQueue()
+	{
+		int value=0;
+		if(!isEmpty())
+		{
+			front++;
+			value = que[front];
+		}
+		else
+		{
+			System.out.println("Error:: Queue is Empty ");
+		}
+	     return value;	
+	}
+	
+	public void display()
+	{
+		int i;
+		if(!isEmpty())
+		{
+			for(i=front+1 ; i<=rear ; i++)
+				System.out.print("\t"+que[i]);
+		}
+		else
+		{
+			System.out.println("Error:: Queue is Empty ");
+		}
+		
+	}
+	
+}//class
+
+
+///////////////////////////////////////////////////////////////////////
+
+/*main method*/
+
+
+
+package QueuePackage;
+
+import java.util.Scanner;
+
+public class QueueArrayClient {
+
+	public static void main(String[] args) {
+		Queuearray aaa = new Queuearray();
+		Scanner sc = new Scanner(System.in);
+
+		int choice,value;
+		
+		do {
+			System.out.println("\n**************MENU************");
+			System.out.println("1:Start"+"\n2:EnQueue"+"\n3:DeQueue"+"\n4:Display"+"\n0:EXIT");
+			System.out.println("Enter your choice: ");
+			option = sc.nextInt();
+			
+			switch(choice)
+			{
+			case 1:
+			       q.initQueue();
+			       System.out.println("New Queue instantiated \n");
+			       break;
+			case 2:
+				 System.out.println("Enter value to enqueue:: ");
+				 value = sc.nextInt();
+				 aaa.enQueue(value);
+				 break;
+			case 3:
+				value = aaa.deQueue();
+				if(value!=0)
+					System.out.println("\tDequeued value:: "+value);
+				break;
+			case 4:
+				aaa.display();
+				break;
+			case 0:
+				System.exit(0);
+			}//switch
+		}while(option!=0);
+	}
+}
+
+
+

@@ -1,0 +1,596 @@
+package Trees;
+
+import java.util.Scanner;
+
+public class BinarySearchTree 
+{
+	Scanner sc = new Scanner(System.in);	
+	public class Node{
+		Node left;
+		Node right;
+		int data;
+		
+	}
+	
+	Node Root = null;
+	
+	public Node initTree(int val)
+	{
+		Node newNode = new Node();
+		newNode.data = val;
+		newNode.left = null;
+		newNode.right = null;
+		return newNode;
+	}//create node
+	
+	public void addNode(int val)
+	{
+		Node newNode = initTree(val);
+		
+		if(Root == null)
+			Root = newNode;
+		
+		else if(Root != null)
+		{
+			Node temp = Root;
+			while(true)
+			{
+				if(val < temp.data)
+				{
+					if(temp.left == null)
+					{
+						temp.left = newNode;
+						System.out.println("Enterd Data "+temp.data);
+						break;
+					}
+					else
+						temp= temp.left;
+				}
+				
+				else if(val > temp.data)
+				{
+					if(temp.right == null)
+					{
+						temp.right = newNode;
+						break;
+					}
+					else
+						temp = temp.right;
+				}
+				else {
+					System.out.println("Duplicates Not Allowed.......");
+				}
+			}
+		}
+		
+	}//Add Node
+	
+	
+	public void pre_Order(Node newNode)
+	{
+//		Root = newNode;
+//		if(Root != null && Root.right != null) 
+//		{
+//			System.out.println(" "+Root.data+" ");
+//			pre_Order(Root.left);
+//			pre_Order(Root.right);
+//	}
+			if(newNode == null)
+				return;
+			System.out.println(newNode.data);
+			pre_Order(newNode.left);
+			pre_Order(newNode.right);
+		
+	}//pre Order
+	
+	public void in_Order(Node newNode)
+	{
+//		if(Root != null)
+//		{
+//			in_Order(Root.left);
+//			System.out.println(" "+Root.data+" ");
+//			in_Order(Root.right);
+//		}
+		
+		if(newNode == null)
+			return;
+		in_Order(newNode.left);
+		System.out.println(newNode.data);	
+		in_Order(newNode.right);	
+	}//in Order
+	
+	public void post_Order(Node newNode)
+	{
+//		if(Root != null)
+//		{
+//			post_Order(Root.left);
+//			post_Order(Root.right);
+//			System.out.println(" "+Root.data+" ");
+//		}
+		
+		pre_Order(newNode.left);
+		pre_Order(newNode.right);
+		System.out.println(newNode.data);
+		
+		
+	}//post Order
+	
+	
+	public int degreeOfNode(int data) 
+	{
+		int degree=0;
+		//Node temp=root;
+		
+		Node newnode=Search(data, Root);
+		if(newnode==null) {
+			return -1;
+		}
+		if(newnode!=null) {
+			if(newnode.left!=null) 
+			{
+				degree++;
+			}
+			if(newnode.right!=null) 
+			{
+				degree++;
+			}
+		}
+		return degree;
+	}
+	
+	public Node Search(int data,Node root) {
+		if(root==null || data==root.data) {
+			return root;
+		}
+		 
+			if(data<root.data) {
+				return Search(data, root.left);
+			}else {
+				return Search(data, root.right);
+			}
+			
+		}
+	
+	public void deleteNode(int val)
+	{
+		Node temp = Root;
+		Node tag = Root;
+		int found = 0;
+		
+		if(Root == null)
+			System.out.println("..........Null Tree..........");
+		else 
+		{
+			while(temp != null)
+			{
+				if(temp.data == val) 
+				{
+					found = 1;
+					break;
+				}
+				else if(val < temp.data)
+				{
+					tag = temp;
+					temp = temp.left;
+				}
+				else if(val > temp.data)
+				{
+					tag = temp;
+					temp = temp.right;
+				}
+			}
+			
+			if(found ==1 )
+			{
+				//case 1 if Node is Leaf node
+				if(temp.left == null && temp.right == null)
+				{
+					if(temp == tag.left)
+						tag.left = null;
+					else
+						tag.right = null;
+				}//leaf node case 1
+				
+				/*-----------------------------------------------*/
+				//case 2 if Node has LST
+				else if(temp.left != null && temp.right == null)
+				{
+					if(temp == tag.left)
+						tag.left = temp.left;
+					else
+						tag.right = temp.right;
+					temp.left = null;
+				}//case 2
+				
+				//case 3 Node with RST
+				else if(temp.right != null && temp.left == null)
+				{
+					if(temp == tag.right)
+						tag.right = temp.right;
+					else
+						tag.left = temp.left;
+					temp.right = null;
+				}
+				
+				//case 4 Node with Binary Tree
+				else 
+				{
+					Node tag2 = temp.right;
+					while(tag2.left != null)
+						tag2 = tag2.left;
+					if(temp == tag.left)
+					{
+						tag.left = temp.right;
+						if(tag2 == null)
+							tag2 = temp.left;
+						else
+						{
+							tag2 = tag2.left;
+							tag2.left = temp.left;
+						}
+						temp.left = null;
+						temp.right = null;
+					}//if Node is on left side
+					
+					else if(temp == tag.right)
+					{
+						tag.right = temp.right;
+						if(tag2 == null)
+							tag2 = temp.left;
+						else {
+							tag2 = tag2.left;
+							tag2.left = temp.left;
+						}
+						temp.left = null;
+						temp.right = null;
+					}
+				}
+			}
+		}
+	}
+
+
+	public static void main(String[] args) 
+	{
+		
+		Scanner sc = new Scanner(System.in);
+		
+		BinarySearchTree bst = new BinarySearchTree();
+		int choice = 0;
+		
+		
+		do {
+			System.out.println("\n\t---------- MENU ----------"+
+					"\n\t 0-> Exit."+
+					"\n\t 1-> Add Node."+
+					"\n\t 2-> Delete Node."+
+					"\n\t 3-> Pre  Order."+
+					"\n\t 4-> In   Order."+
+					"\n\t 5-> Post Order."+
+					"\n\t 6-> Degree Of Node.");
+			System.out.println("\nEnter Your Choice\n");
+			choice = sc.nextInt();
+			switch (choice) {
+			case 0:
+					System.out.println("Exiting The Program !!!");
+					System.exit(0);
+					break;
+			case 1:
+					System.out.println("Enter The Value :: ");
+					bst.addNode(sc.nextInt());
+					break;
+			case 2:
+					System.out.println("Enetr Node You Want To Delete :: ");
+					int val = sc.nextInt();
+					bst.deleteNode(val);
+					break;
+			case 3:
+					System.out.println("----------Pre Order----------");
+					bst.pre_Order(bst.Root);
+					System.out.println("------------------------------");
+					break;
+			case 4:
+					System.out.println("----------In Order----------");
+					bst.in_Order(bst.Root);
+					System.out.println("-----------------------------");
+					break;
+			case 5:
+					System.out.println("----------Post Order----------");
+					bst.post_Order(bst.Root);
+					System.out.println("-------------------------------");
+					break;
+			case 6:
+					System.out.println("Enter the Node Who's Degree You Want to Find :: ");
+					System.out.println(bst.degreeOfNode(sc.nextInt()));
+					break;
+			}
+		} while (choice != 0);
+		
+		
+	}
+
+}
+
+
+
+
+///////////////////////////////////////////////////////////////
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+1
+Enter The Value :: 
+80
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+1
+Enter The Value :: 
+60
+Enterd Data 80
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+1
+Enter The Value :: 
+90
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+1
+Enter The Value :: 
+50
+Enterd Data 60
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+1
+Enter The Value :: 
+70
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+4
+----------In Order----------
+50
+60
+70
+80
+90
+-----------------------------
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+2
+Enetr Node You Want To Delete :: 
+50
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+4
+----------In Order----------
+60
+70
+80
+90
+-----------------------------
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+2
+Enetr Node You Want To Delete :: 
+90
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+4
+----------In Order----------
+60
+70
+80
+-----------------------------
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+1
+Enter The Value :: 
+50
+Enterd Data 60
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+1
+Enter The Value :: 
+85
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+1
+Enter The Value :: 
+95
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+4
+----------In Order----------
+50
+60
+70
+80
+85
+95
+-----------------------------
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+2
+Enetr Node You Want To Delete :: 
+90
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+
+4
+----------In Order----------
+50
+60
+70
+80
+85
+95
+-----------------------------
+
+	---------- MENU ----------
+	 0-> Exit.
+	 1-> Add Node.
+	 2-> Delete Node.
+	 3-> Pre  Order.
+	 4-> In   Order.
+	 5-> Post Order.
+	 6-> Degree Of Node.
+
+Enter Your Choice
+

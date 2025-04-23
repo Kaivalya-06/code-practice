@@ -1,0 +1,59 @@
+package Insertion_Sort_Package;
+
+import java.util.Scanner;
+
+public class Insertion_sort {
+
+	public static void main(String[] args) 
+	{
+		int small = 0;
+		int i = 1,j=i-1;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\nEnter the Size of the array :: ");
+		int size = sc.nextInt();
+		int[] arr = new int[size];
+		System.out.println("\nEnter the Elements of the array :: ");
+		for(int k =0;k<size;k++)
+		{
+			arr[k] = sc.nextInt();
+		}
+		
+		for(i = 1;i<arr.length;i++)
+		{
+			small = arr[i];
+				for(j=i-1;j>-1 && arr[j] > small;j--)
+				{
+					arr[j+1] = arr[j];
+					arr[j] = small;
+				}
+				
+		}
+		
+		for(int k =0;k<size;k++)
+		{
+			System.out.print(" "+arr[k]+" ");
+		}
+
+	}
+
+}
+
+
+
+
+///////////////////////////////////////////////////////////
+***********************************************************
+///////////////////////////////////////////////////////////
+
+
+			OUTPUT
+
+
+Enter the Size of the array :: 
+3
+
+Enter the Elements of the array :: 
+89
+11
+-6
+ -6  11  89 

@@ -1,0 +1,292 @@
+package StackPackage;
+
+import java.util.Scanner;
+
+public class StackArray 
+{
+	private int size;
+	private int top;
+	private int arr[];
+	
+	public void initStack()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of stack");
+		size = sc.nextInt();
+		arr = new int[this.size];
+		top = -1;
+	}
+	
+	public boolean isFull()
+	{
+		if(top == size-1)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isEmpty()
+	{
+		if(top == -1)
+			return true;
+		else
+			return false;
+	}
+	
+	public void push(int a)
+	{
+		
+		if(!isFull())
+		{
+			System.out.println("\n\tEnter the value to be entered\n");
+			arr[++top] = a;
+			
+		}
+		else
+			System.out.println("\n\t............Stack is Full............");
+	}
+	
+	public int pop()
+	{
+		int val = -1;
+		if(!isEmpty())
+		{
+			val = arr[top--];
+		}
+		else
+			System.out.println("\n\t...........Stack Is Empty.............");
+		return val;
+	}
+	
+	public void display()
+	{
+		if(!isEmpty())
+		{
+			for(int i=top;i>-1;i--)
+			{
+				System.out.println("\n\t"+arr[i]);
+			}
+		}
+		else
+			System.out.println("\n\t..................Stack is Empty.................");
+	}
+	
+	
+	
+}//class
+
+
+////////////////MAIN METHOD//////////////////
+
+package StackPackage;
+
+import java.util.Scanner;
+
+public class StackMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		StackArray s = new StackArray();
+		int abc,choice;
+		do
+		{
+			System.out.println("\n\n------------Menu----------");
+			System.out.println("\n1:Start"+
+					"\n2:Push"+
+					"\n3:Pop"+
+					"\n4:Display"+
+					"\n0:EXIT");
+			System.out.println("\nEnter your choice:: ");
+			choice = sc.nextInt();
+			switch (choice) {
+			case 1: 
+				s.initStack();
+				System.out.println("\n\t............Stack has Initialized..........");
+				break;
+				
+			case 2:
+				System.out.println("\n\tEnter the element to add");
+				abc = sc.nextInt();
+				s.push(abc);
+				break;
+				
+			case 3:
+				abc = s.pop();
+				if(abc!=-1)
+					System.out.println("\n\tPopped value is :: "+abc);
+				break;
+			
+			case 4:
+				System.out.println("\n\t............................");
+				s.display();
+				System.out.println("\n\t............................");
+				break;
+			
+			case 0:
+				System.exit(0);
+			}
+			
+		}while(choice !=0);
+	}
+}
+
+
+////////////OUTPUT//////////////
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+1
+Enter the size of stack
+3
+
+	............Stack has Initialized..........
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+2
+
+	Enter the element to add
+10
+
+	Enter the value to be entered
+
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+20
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+2
+
+	Enter the element to add
+20
+
+	Enter the value to be entered
+
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+2
+
+	Enter the element to add
+30
+
+	Enter the value to be entered
+
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+4
+
+	............................
+
+	30
+
+	20
+
+	10
+
+	............................
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+3
+
+	Popped value is :: 30
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+3
+
+	Popped value is :: 20
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+3
+
+	Popped value is :: 10
+
+
+------------Menu----------
+
+1:Start
+2:Push
+3:Pop
+4:Display
+0:EXIT
+
+Enter your choice:: 
+0

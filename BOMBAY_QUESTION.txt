@@ -1,0 +1,120 @@
+STACK CLASS
+
+package Dynamic_Stack;
+
+import SinglyLinkedList.Node;
+
+public class Stack_using_Linked_list {
+	private Node head;
+	
+	public Stack_using_Linked_list()
+	{
+		head = null;
+	}
+	
+	public Node createNode(int val)
+	{
+		Node newNode = new Node();
+		
+		newNode.setData(val);
+		newNode.setNext(null);
+		return newNode;
+	}
+	
+	public boolean isEmpty()
+	{	
+		if(head == null)
+			return true;
+		else
+			return false;
+	}
+	
+	public void pushElement(int a)
+	{
+		Node newNode = createNode(a);
+		if(isEmpty())
+		{
+			head = newNode;
+		}
+		else
+		{
+			newNode.setData(a);
+			newNode.setNext(head);
+			head= newNode;	
+		}
+	}//push
+	
+	public int popElement()
+	{
+		int val = -1;
+		if(!isEmpty()) {
+		Node temp = head;
+		val = temp.getData();
+		head= temp.getNext();
+		temp.setNext(null);
+		
+		}
+		return val;
+	}
+		
+		public void display2()
+		{
+			Node temp = head;
+			
+			if(temp == null)
+				System.out.println("stack is empty !!!");
+			else 
+			{
+				while(temp != null)
+				{
+					System.out.print((char)temp.getData()+" ");
+					temp = temp.getNext();
+				}
+			}
+		
+	}
+	
+	
+
+}
+
+
+
+
+
+//////////////////////////////////////////////////
+**************************************************
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+		MAIN CLASS
+
+
+package Dynamic_Stack;
+
+public class Bombay_Question {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Stack_using_Linked_list s1 = new Stack_using_Linked_list();
+		String s = "BomBay";
+		for(int i=0;i<s.length();i++)
+		{
+			s1.pushElement(s.charAt(i));
+		}
+		
+		s1.display2();
+
+	}
+
+}
+
+
+
+
+//////////////////////////////////////////////////
+*************************************************
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		OUTPUT
+
+
+y a B m o B 

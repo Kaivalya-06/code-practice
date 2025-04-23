@@ -1,0 +1,262 @@
+package Infix_postfix;
+
+import java.util.Scanner;
+
+public class Stack {
+	
+	private int size;
+	private char stk[];
+	private int top;
+	
+	Scanner sc = new Scanner(System.in);
+	
+	public Stack()
+	{
+		size = 0;
+		stk =new char[size];
+		top = -1;
+	}
+	
+	//method to create new stack
+	public Stack(int size)
+	{
+		this.size = size;
+		stk  = new char[this.size];
+		this.top = -1;
+	}
+	
+	public boolean isFull()
+	{
+		if(top == size-1)
+			return true;
+		else 
+			 return false;
+	}
+	
+	public boolean isEmpty()
+	{
+		if(top == -1)
+			return true;
+		else
+			return false;
+	}
+	
+	public void push(char value)
+	{
+		if(!isFull())
+		{
+			top++;
+			stk[top] = value;
+		}
+		else
+			System.out.println("\n\tSTACK OVERFLOW......");
+	}
+	
+	public char pop()
+	{
+		char value=' ';
+		if(!isEmpty())
+		{
+			value = stk[top];
+			top--;
+		}
+	
+	  return value;
+	}
+	
+	
+	//reading topmost value
+	public char peek()
+	{
+		char value =' ';
+		if(!isEmpty())
+		{
+			value = stk[top];
+		}
+		return value;
+	}
+	
+	//checking if char is operant
+	public boolean isOperant(char ch)
+	{
+		if(ch>='A' && ch<='Z')
+			return true;
+		else if(ch>='a' && ch<='z')
+			return true;
+		else
+			return false;
+	}
+	
+	//checking if char is an operator
+	public boolean isOperator(char ch)
+	{
+		if(ch=='(' || ch==')')
+			return true;
+		else if(ch=='+' || ch=='-' || ch=='*' || ch=='%' || ch=='/')
+			return true;
+		else if(ch=='$' || ch=='^')
+			return true;
+		else
+			return false;
+	}
+	
+	public int priority(char ch)
+	{
+		switch(ch)
+			{
+			case '$': return 4;
+			
+			case '*':
+			case '/':
+			case '%': return 3;
+			
+			case '+':
+			case '-': return 2;
+			
+			case '^': return 1;
+			}
+			
+	   return -1;
+	}
+	
+	
+	public String infix_postfix(String infix)
+	{
+	   	String postfix="";
+	   	
+	   	char ch, ch2;
+	   	int i;
+	   	for(i=0;i<infix.length();i++)
+	   	{
+	   		ch = infix.charAt(i);
+	   		
+	   		//If char is operant add to postfix string:
+	   		if(isOperant(ch))  
+	   		{
+	   			postfix += ch;	   			
+	   		}
+	   	//if char is operator check which rule satisfies::
+	   		else if(isOperator(ch))
+	   		{
+	   			//Rule 1:
+	   			if(ch=='(')
+	   			{
+	   				push(ch);
+	   			}
+	   			//Rule 2: 
+	   			else if(ch==')')
+	   			{
+	   				do
+	   				{
+	   			    	ch2 = pop();  
+  	   				    postfix += ch2;
+	   				}while(peek()!='('); //pop all operators from stack until '(' is found
+	   				pop(); //pop '(' from stack but do not add to postfix
+	   			}
+	   			//Rule 3: 
+	   			else if(isEmpty())
+	   			{
+	   				push(ch);
+	   			}
+	   			//Rule 4:
+	   			else if(peek() == '(')
+	   			{
+	   				push(ch);
+	   			}
+	   			//Rule 5:
+	   			else if(priority(ch) > priority(peek()))
+	   			{
+	   				push(ch);
+	   			}
+	   			//Rule 6:
+	   			else if(priority(ch) <= priority(peek()))
+	   			{
+	   				do
+	   				{
+	   					ch2 = pop();
+	   					postfix +=ch2;
+	   					 
+	   				}while(priority(ch) <= priority(peek()));
+	   				//add current char to stack
+	   				push(ch);
+	   			}
+	   		}//else if
+	   		else
+	   		{
+	   			System.out.println("\n\tWrong operator...!!!");
+	   			break;
+	   		}
+	   		
+	   	}//for		
+	   	
+	   	//when string terminates pop all operators from stack & add to postfix
+	   	while(!isEmpty())
+	   	{
+	   		ch = pop();
+	   		if(ch=='(' || ch==')')
+	   		{
+	   			System.out.println("Wrong infix expression....");
+	   			postfix = "";
+	   			break;
+	   		}
+	   		postfix +=ch;
+	   	}
+	   	
+	   	return postfix;
+	}//convertion()
+	
+
+}//class
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+package Infix_postfix;
+
+import java.util.Scanner;
+
+public class ClientConvertion {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String infix, postfix;
+		Scanner sc = new Scanner(System.in);
+		
+		do{
+			System.out.println("\nEnter infix expression::");
+			infix = sc.next();
+			
+			Stack s = new Stack(infix.length());
+			postfix = s.infix_postfix(infix);
+			System.out.println("\n\tPostfix:: "+postfix);
+			
+			
+			infix = sc.next();
+		}while(!infix.equals("no"));
+	
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////

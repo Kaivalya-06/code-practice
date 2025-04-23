@@ -1,0 +1,142 @@
+package SinglyLinkedList;
+
+import java.util.Scanner;
+
+
+
+public class MergeSortLinkedList {
+
+	
+    public static Node mergeSort(Node head) 
+    {
+        if (head == null || head.next == null)
+            return head;
+
+        Node mid = getMid(head);//		->Splits the list into two halves
+        Node MidNext = mid.next;
+        mid.next = null;
+
+        Node left = mergeSort(head);//    	->sorts each half in a loop
+        Node right = mergeSort(MidNext);//    	->sorts each half in a loop
+
+        return sortedelementsMerge(left, right);//    	->Merges the sorted halves
+    }
+
+    public static Node sortedelementsMerge(Node a, Node b) 
+    {
+        if (a == null) return b;
+        if (b == null) return a;
+
+        Node result;
+        if (a.data <= b.data) 
+        {
+            result = a;
+            result.next = sortedelementsMerge(a.next, b);//recursion for merge the elements
+        } 
+        else 
+        {
+            result = b;
+            result.next = sortedelementsMerge(a, b.next);//merge the sorted ellemnts
+        }
+        return result;
+    }
+
+    public static Node getMid(Node head) //gives the middle node of the list
+    {
+        if (head == null) return head;
+
+        Node tag = head;
+        Node temp = head.next;
+
+        while (temp != null && temp.next != null) 
+        {
+            tag = tag.next;
+            temp = temp.next.next;
+        }
+
+        return tag;
+    }
+    public static Node createList(Scanner scanner, int listNumber) //creates the list
+    {
+        System.out.print("Enter number of nodes in List " + listNumber + ": ");
+        int n = scanner.nextInt();
+        Node head = null, tail = null;
+
+        for (int i = 1; i <= n; i++) 
+        {
+        	System.out.println("Enter Value to add in Node "+i+" :: ");
+            int val = scanner.nextInt();
+            Node newNode = new Node(val);
+            if (head == null) {
+                head = tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
+            }
+        }
+        return head;
+    }
+    
+    public static void printList(Node head) //printing the list
+    {
+    	System.out.print(" [ ");
+        while (head != null) {
+            System.out.print(head.data + " -> ");
+            head = head.next;
+        }
+        System.out.println("null ]");
+    }
+
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Node list1 = createList(scanner, 1);
+        Node list2 = createList(scanner, 2);
+        
+        int choice = 0;
+        do {
+			System.out.println("...........MENU..........."+
+								"\n 1-> Original 1st List."+
+								"\n 2-> Original 2nd List."+
+								"\n 3-> Sort 1st List."+
+								"\n 4-> Sort 2nd List."+
+								"\n 5-> Sorted 1st List."+
+								"\n 6-> Sorted 2nd List."+
+								"\n 7-> Final 3rd List.\n");
+			System.out.println("Enter your Choice :: ");
+			choice = scanner.nextInt();
+			
+			switch (choice) {
+			
+				case 1:
+						System.out.println("Original List 1:");
+						printList(list1);
+						break;
+				case 2:
+						System.out.println("Original List 2:");
+						printList(list2);
+						break;
+				case 3:
+						list1 = mergeSort(list1);
+						break;
+				case 4:
+						list2 = mergeSort(list2);
+						break;
+				case 5:
+						System.out.println("\nSorted List 1:\n\t");
+			        	printList(list1);
+			        	break;
+				case 6:
+						System.out.println("\nSorted List 2:\n\t");
+			        	printList(list2);
+			        	break;
+				case 7:
+			        	Node merged = sortedelementsMerge(list1, list2);
+			        	System.out.println("Final Merged & Sorted List:");
+			        	printList(merged);
+			        	break;
+			}
+			
+		} while (choice != 0);
+    }
+}

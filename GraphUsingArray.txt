@@ -1,0 +1,156 @@
+package graphsPackage;
+
+import java.util.Scanner;
+
+public class GraphsClass 
+{	static int size;
+	static int[][]graph;
+	public GraphsClass(int size)
+	{
+		this.size = size;
+		graph = new int[this.size][this.size];
+	}
+	public static void createGraph() 
+	{
+		Scanner sc = new Scanner(System.in);
+		for(int i=0;i<size;i++)
+		{
+			for(int j=0;j<size;j++)
+			{
+				System.out.println((i+1)+" -> "+(j+1));
+				System.out.println("Enter '1' if any connection or Enter '0' :: ");
+				int val = sc.nextInt();
+				
+				if(val == 0 || val == 1)
+					graph[i][j] = val;
+				else
+					System.out.println("Check Enterd Value !!!!");
+			}//j loop
+		}//i loop
+		for(int i=0;i<size;i++)
+		{
+			for(int j=0;j<size;j++)
+			{
+				System.out.print(graph[i][j]+" ");
+			}
+			System.out.println("");
+		}
+	}//create
+		
+	
+	public static void DFS()
+	{
+		int i,j,k=0;
+		int visited[] = new int[size];
+		
+		for(i=0;i<size;i++)
+			visited[i] = 0;
+			for(i=0;i<size;i++)
+			{
+				if(visited[i] == 0) 
+				{
+					visited[i] = 1;
+					k = i;
+					for(j = 0;j<size;j++)
+					{
+						if(graph[k][j] != 0)
+						{
+							if(visited[j] == 0)
+							{
+								visited[j] = 1;
+								k=j;
+								j=0;
+							}
+							else
+								j++;
+						}
+						else
+							j++;
+					}
+				}
+			}
+			for(;i<size;i++)
+				System.out.print(" "+ (i+1));
+	}
+	
+	static public void BFS()
+	{
+		int i,j,k=0;
+		int[]visited = new int[size];
+		for(i=0;i<size;i++)
+		{
+			visited[i] = 0;
+			System.out.println(" "+i+1);
+			for(j=0;j<size;)
+			{
+				if(graph[i][j] != 0)
+				{
+					if(visited[j] == 0)
+					{
+						System.out.println(j+1);
+						visited[i] = 1;
+					}
+					else
+						j++;
+				}
+				else
+					j++;
+			}
+		}
+		
+	}
+		
+	static public int degreeOfVertex(int vertex)
+	{
+		int degree = 0;
+		for(int i=0;i<size;i++)
+		{
+			if(vertex == i) 
+			{
+				for(int j=0;j<size;j++)
+				{
+					if(graph[i][j] == 1)
+						degree++;
+				}
+			}
+		}
+		
+		return degree;
+	}
+
+	public static void main(String[] args) 
+	{
+		System.out.println("Enter the size :: ");
+		Scanner sc = new Scanner(System.in);
+		GraphsClass g = new GraphsClass(sc.nextInt());
+		g.createGraph();
+		do {
+			System.out.println("\n\t...........MENU.........."+
+					"\n\t 1-> DFS Graph."+
+					"\n\t 2-> BFS Graph."+
+					"\n\t 3-> Degree.");
+			System.out.println("\nEnter Your Choice\n");
+			switch (sc.nextInt()) 
+			{
+			case 0:
+					System.out.println("Exiting The Program !!! ");
+					System.exit(0);
+					break;
+			case 1:
+					System.out.println("........DFS........");
+					g.DFS();
+					break;
+			case 2:
+					System.out.println(".......BFS........");
+					g.BFS();
+					break;
+			case 3:
+					System.out.println("Enter Vertex Whose Degree You Want :: ");
+					System.out.println(g.degreeOfVertex(sc.nextInt()));
+					break;
+			}
+			
+		} while (sc.nextInt() != 0);
+	}
+
+}

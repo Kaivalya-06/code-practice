@@ -1,0 +1,105 @@
+package graphsPackage;
+
+import java.util.Scanner;
+
+public class DirectedGraph 
+{
+	static int size;
+	static int[][]graph = new int[size][size];
+	
+	public DirectedGraph(int size)
+	{
+		this.size = size;
+		graph = new int[this.size][this.size];
+	}
+	
+	public static void createGraph()
+	{
+		Scanner sc = new Scanner(System.in);
+		for(int i=0;i<size;i++)
+		{
+			for(int j=0;j<size;j++)
+			{
+				System.out.println((i+1)+" -> "+(j+1));
+				System.out.println("Enter '1' if any connection or Enter '0' :: ");
+				int val = sc.nextInt();
+				
+				if(val == 0 || val == 1)
+					graph[i][j] = val;
+				else
+					System.out.println("Check Enterd Value !!!!");
+			}//j loop
+		}//i loop
+		for(int i=0;i<size;i++)
+		{
+			for(int j=0;j<size;j++)
+			{
+				System.out.print(graph[i][j]+" ");
+			}
+			System.out.println("");
+		}
+	}//create graph
+	
+	static public void outDegree()
+	{
+		for(int i=0;i<graph.length;i++)
+		{
+			int outDegree = 0;
+			for(int j=0;j<size;j++)
+			{
+				if(graph[j][i] == 1)
+					outDegree++;
+			}
+			System.out.println(i+ " "+ outDegree);
+		}
+		
+	}
+	
+	static public void indgree()
+	{
+		
+		for(int i=0;i<size;i++)
+		{
+			int indegree = 0;
+			
+				for(int j=0;j<size;j++)
+				{
+					if(graph[j][i] == 1)
+						indegree++;
+				}
+			System.out.println(i+ " "+ indegree);
+			
+		}
+	}
+
+	public static void main(String[] args) 
+	{
+		System.out.println("Enter the size :: ");
+		Scanner sc = new Scanner(System.in);
+		DirectedGraph dg = new DirectedGraph(sc.nextInt());
+		dg.createGraph();
+		do {
+			System.out.println("\n\t...........MENU.........."+
+					"\n\t 1-> In Degree."+
+					"\n\t 2-> Out Degree."+
+					"\n\t 3-> Degree.");
+			System.out.println("\nEnter Your Choice\n");
+			switch (sc.nextInt()) 
+			{
+			case 0:
+					System.out.println("Exiting The Program !!! ");
+					System.exit(0);
+					break;
+			case 1:
+					System.out.println("Enter Vertex Whose In_Degree You Want :: ");
+					dg.indgree();
+					break;
+			case 2:
+					System.out.println("Enter Vertex Whose Out_Degree You Want :: ");
+					dg.outDegree();;
+					break;
+			}
+			
+		} while (sc.nextInt() != 0);
+	}
+}

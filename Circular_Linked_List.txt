@@ -1,0 +1,125 @@
+package Circular_Linked_List;
+
+import java.util.Scanner;
+
+
+public class CircularLinkedList {
+
+	Scanner sc = new Scanner(System.in);
+	public class Node{
+		int data;
+		Node next;
+		
+		Node(int data)
+		{
+			this.data = data;
+			next = null;
+		}
+		
+	}
+	
+	private Node head;
+	
+	public CircularLinkedList()
+	{
+		head = null;
+	}
+	
+	public Node createNode()
+	{
+		System.out.println("Enetr the Data :: ");
+		Node newNode = new Node(sc.nextInt());
+		
+		return newNode;
+	}
+	
+	public void addNode()
+	{
+		Node newNode = createNode();
+		Node temp = head;
+		
+		if(head == null)
+		{
+			head = newNode;
+			newNode.next = head;
+		}
+		
+		else 
+		{
+			
+			newNode.next = head;
+			while(temp.next != head)
+			{
+				temp = temp.next;
+			}
+			temp.next = newNode;
+		}
+		
+	}//add Node
+	
+	
+	public void deleteNode()
+	{
+		Node temp = head;
+		while(temp.next.next != null)
+			temp = temp.next;
+		temp.next.next = null;
+		temp.next = head;
+	}
+	
+	public void display()
+	{
+		Node temp = null;
+		
+		temp = head;
+		while(temp.next!=head)
+		{
+			if(temp.next != head)
+			{
+				System.out.print(temp.data+"->");
+			}
+			temp = temp.next;
+		}
+		System.out.println(temp.data);
+	}//display
+	
+	
+	
+	public static void main(String[]args)
+	{
+		Scanner sc = new Scanner(System.in);
+		CircularLinkedList cll = new CircularLinkedList();
+		int choice = 0;
+		
+		do {
+			
+			System.out.println("\n\t 1-> Add Node."+
+								"\n\t 2-> Delete Node."+
+								"\n\t 3-> Display."+
+								"\n\t 0-> Exit From Program.");
+			
+			System.out.println("\nEnter Your Choice :: ");
+			choice = sc.nextInt();
+			
+			switch (choice) {
+			case 0:
+					System.out.println(".........Exitig..........");
+					System.exit(0);
+					break;
+			case 1:
+					cll.addNode();
+					break;
+			case 2:
+					cll.deleteNode();
+					break;
+			case 3:
+					cll.display();
+					break;
+			}
+			
+		}while(choice != 0);
+
+	}
+	
+	
+}//class

@@ -1,0 +1,332 @@
+
+
+////////////////////////////////////////////////////////////
+************************************************************
+			NODE CLASS
+
+package SinglyLinkedList;
+
+public class Node {
+	private int data;
+	private Node next;
+	
+	public Node()
+	{
+		data = 0;
+		next = null;
+	}
+	
+	public void setData(int value)
+	{
+		data = value;
+	}
+	
+	public int getData()
+	{
+		return data;
+	}
+	
+	public void setNext(Node newNode)
+	{
+		next = newNode;
+	}
+	
+	public Node getNext()
+	{
+		return next;
+	}
+	
+}//node
+
+
+
+
+//////////////////////////////////////////////////////////////////
+******************************************************************
+
+		SINGLY_LINKED_LIST CLASS
+
+
+package SinglyLinkedList;
+
+import java.util.Scanner;
+
+public class Singly_Linked_List {
+	private Node head;
+	private static int count = 0;
+	Scanner sc = new Scanner(System.in);
+	
+	public Singly_Linked_List() {
+		head = null;
+	}
+	
+	public void setHead(Node newNode) {
+		head = newNode;
+	}
+	
+	public Node creatNewNode() {
+		Node newNode = new Node();
+		System.out.println("Enter the data:: ");
+		newNode.setData(sc.nextInt());
+		newNode.setNext(null);
+		count++;
+		return newNode;
+	}
+	
+	public void addAtStart() {
+		Node newNode = creatNewNode();
+		newNode.setNext(head);
+		head = newNode;
+	}
+	
+	public void addAtEnd() {
+		Node newNode = creatNewNode();
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		Node temp = head;
+		while (temp.getNext() != null) {
+			temp = temp.getNext();
+		}
+		temp.setNext(newNode);
+	}
+	
+	public void addAtMiddle(int value) {
+		Node newNode = creatNewNode();
+		if (head == null) {
+			System.out.println("Linked List Is Empty.......!!!!");
+			return;
+		}
+		Node temp = head;
+		while (temp != null && temp.getData() != value) {
+			temp = temp.getNext();
+		}
+		if (temp != null) {
+			newNode.setNext(temp.getNext());
+			temp.setNext(newNode);
+		} else {
+			System.out.println("Value not found in list.");
+		}
+	}
+	
+	public void addByPosition(int pos) {
+		if (pos <= 0 || pos > count + 1) {
+			System.out.println("Invalid position.");
+			return;
+		}
+		Node newNode = creatNewNode();
+		if (pos == 1) {
+			newNode.setNext(head);
+			head = newNode;
+			return;
+		}
+		Node temp = head;
+		for (int i = 1; i < pos - 1; i++) {
+			temp = temp.getNext();
+		}
+		newNode.setNext(temp.getNext());
+		temp.setNext(newNode);
+	}
+	
+	public void deleteByPosition(int pos) {
+		if (pos <= 0 || pos > count || head == null) {
+			System.out.println("Invalid position or empty list.");
+			return;
+		}
+		if (pos == 1) {
+			head = head.getNext();
+			count--;
+			return;
+		}
+		Node temp = head;
+		for (int i = 1; i < pos - 1; i++) {
+			temp = temp.getNext();
+		}
+		if (temp.getNext() != null) {
+			temp.setNext(temp.getNext().getNext());
+			count--;
+		}
+	}
+	
+	public void display() {
+		Node temp = head;
+		while (temp != null) {
+			System.out.print(temp.getData() + "->");
+			temp = temp.getNext();
+		}
+		System.out.println("null");
+	}
+	
+	public int nodesCount() {
+		return count;
+	}
+}
+
+
+////////////////////////////////////////////////////////////
+************************************************************
+
+		MAIN CLASS
+
+
+
+package SinglyLinkedList;
+
+import java.util.Scanner;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int choice;
+
+		Singly_Linked_List sll = new Singly_Linked_List();
+
+		do {
+			System.out.println("\n\t...............MENU...............");
+			System.out.println("\t1) Add At Start.");
+			System.out.println("\t2) Add At End.");
+			System.out.println("\t3) Add At Middle.");
+			System.out.println("\t4) Count of Nodes");
+			System.out.println("\t5) Add By Position");
+			System.out.println("\t6) Delete By Position");
+			System.out.println("\t99) Display");
+			System.out.println("\t0) Exit");
+			System.out.print("Enter the choice :: ");
+			choice = sc.nextInt();
+
+			switch (choice) {
+			case 0:
+				System.exit(0);
+			case 1:
+				sll.addAtStart();
+				break;
+			case 2:
+				sll.addAtEnd();
+				break;
+			case 3:
+				System.out.print("Enter value after which to add: ");
+				sll.addAtMiddle(sc.nextInt());
+				break;
+			case 4:
+				System.out.println("Total Nodes present are: " + sll.nodesCount());
+				break;
+			case 5:
+				System.out.print("Enter position to add node: ");
+				sll.addByPosition(sc.nextInt());
+				break;
+			case 6:
+				System.out.print("Enter position to delete node: ");
+				sll.deleteByPosition(sc.nextInt());
+				break;
+			case 99:
+				System.out.println("\n--------------------------------------------");
+				sll.display();
+				System.out.println("--------------------------------------------");
+				break;
+			default:
+				System.out.println("Invalid Choice!");
+			}
+		} while (choice != 0);
+	}
+}
+
+
+
+
+///////////////////////////////////////////////////////////////
+***************************************************************
+		OUTPUT
+
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	99) Display
+	0) Exit
+Enter the choice :: 
+1
+Enter the data:: 
+10
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	99) Display
+	0) Exit
+Enter the choice :: 
+2
+Enter the data:: 
+20
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	99) Display
+	0) Exit
+Enter the choice :: 
+3
+Enter Position:: 
+10
+Enter the data:: 
+30
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	99) Display
+	0) Exit
+Enter the choice :: 
+3
+Enter Position:: 
+10
+Enter the data:: 
+40
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	99) Display
+	0) Exit
+Enter the choice :: 
+99
+
+--------------------------------------------
+10->40->30->20->
+--------------------------------------------
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	99) Display
+	0) Exit
+Enter the choice :: 
+4
+Total Nodes present are:: 
+4
+
+--------------------------------------------
+10->40->30->20->
+--------------------------------------------
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	99) Display
+	0) Exit
+Enter the choice :: 

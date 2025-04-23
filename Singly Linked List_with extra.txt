@@ -1,0 +1,533 @@
+package SinglyLinkedList;
+
+import java.util.Scanner;
+
+public class Singly_Linked_List {
+	private Node head;
+	private static int count = 0;
+	
+	Scanner sc = new Scanner(System.in);
+	
+	
+	public Singly_Linked_List() {
+		head = null;
+	}
+	
+	public void setHead(Node newNode)
+	{
+		head = newNode;
+	}
+	
+	public Node  creatNewNode()
+	{
+		count++;
+		Node newNode = new Node();				//creating new node dynamically
+		
+		System.out.println("Enter the data:: ");
+		newNode.setData(sc.nextInt());			//setting data of the node
+		
+		newNode.setNext(null);					//setting next of the node
+		
+		return newNode;
+		
+	}//create node
+	
+	public void addAtStart()
+	{
+		Node newNode = creatNewNode();
+		
+		if(head == null)
+			head = newNode;
+		
+		else 
+		{
+			newNode.setNext(head);
+			head = newNode;
+		}
+	}//at Start
+	
+	public void addAtEnd()
+	{
+		Node temp = null;
+		Node newNode = creatNewNode();
+		
+		if(head == null)
+			head = newNode;
+		
+		else 
+		{
+			temp = head;
+			while(temp.getNext() != null)
+			{
+					temp = temp.getNext();
+			}
+			temp.setNext(newNode);
+		}
+	}//at End
+	
+	
+	public void addAtMiddle(int value)
+	{
+		Node temp = null;
+		Node newNode = creatNewNode();
+		
+		if(head == null)
+			System.out.println("Linked List Is Empty.......!!!!");
+		
+		else if(head.getNext() == null)
+		{
+			if(head.getData() == value)
+				head.setNext(newNode);
+			else
+				System.out.println("---!!!Error!!!---");
+		}
+		
+		else
+		{
+			temp = head;
+			while(temp.getNext() != null && temp.getData() != value )
+			{
+				temp = temp.getNext();
+			}
+			if(temp != null)
+			{
+				newNode.setNext(temp.getNext());
+				temp.setNext(newNode);
+			}
+			else
+				System.out.println("---- !!! Error !!! ------");
+		}//else
+		
+	}//add at middle
+	
+	public void updateNode()
+	{
+		System.out.println("Enter the Node you want to update:: ");
+		int val = sc.nextInt();
+		
+		Node temp = head;
+		if(head == null)
+			System.out.println("No linked list present !!!");
+		
+		else if(head.getNext() == null)
+			System.out.println("Only one node is Present !!!");
+		
+		else {
+				while(temp.getNext() != null)
+				{
+					temp = temp.getNext();
+					if(temp.getData() == val)
+					{
+						System.out.println("\nEnter the new value:: \n");
+						temp.setData(sc.nextInt());
+					}
+				}
+			}
+	}//update
+	
+	
+	public void deleteAtStart()
+	{
+		Node temp = null;
+		
+		if(head == null)
+			System.out.println("Empty Linked List !!!");
+		else {
+			temp = head;
+			head = head.getNext();
+			temp.setNext(null);
+		}
+	}//delete at start
+	
+	
+	public void deleteAtEnd()
+	{
+		Node temp = null;
+		if(head == null)
+			System.out.println("List is Empty !!!");
+		if(head.getNext() == null) {
+			System.out.println("Only one Node is Present");
+			head.setNext(null);
+		}
+		else {
+			temp = head;
+			while(temp.getNext().getNext() != null)
+			{
+				temp = temp.getNext();
+			}
+			temp.setNext(null);
+		}
+		
+	}//delete at end
+	
+	
+	public void deleteAtMiddle()
+	{
+		Node temp = null;
+		
+		if(head == null)
+			System.out.println("List is Empty !!!");
+		if(head.getNext() == null) {
+			System.out.println("Only one Node is Present");
+			head.setNext(null);
+		}
+		
+		else 
+		{
+			System.out.println("Enter the node value to be delted");
+			int val = sc.nextInt();
+			temp = head;
+			Node tag = temp;
+			while(temp != null && temp.getData() != val)
+			{
+				tag = temp;
+				temp = temp.getNext();
+			}
+			if(temp != null)
+			{
+				tag.setNext(temp.getNext());
+				temp.setNext(null);
+			}
+		}
+		
+	}
+	
+	
+	public void display()
+	{
+		Node temp = null;
+		
+		temp = head;
+		while(temp!=null)
+		{
+			if(temp != null)
+			{
+				System.out.print(temp.getData()+"->");
+			}
+			temp = temp.getNext();
+		}
+	}//display
+	
+	public void reverseList()
+	{
+		Node prev = null;
+		Node curr = head;;
+		Node next = null;
+			while(curr != null)
+			{
+				next = curr.getNext();
+				curr.setNext(prev);
+				prev = curr;
+				curr = next;
+			}
+			head = prev;
+		
+	}
+	
+	public void printReverse() {
+	    printReverseHelper(head);
+	    System.out.println();
+	}
+
+	private void printReverseHelper(Node node) {
+	    if (node == null)
+	        return;
+	    printReverseHelper(node.getNext());
+	    System.out.print(node.getData() + " ");
+	}
+	
+	public int nodesCount()
+	{
+		return count;
+	}
+	
+	
+	public void addByPosition(int pos) {
+		if (pos <= 0 || pos > count + 1) {
+			System.out.println("Invalid position.");
+			return;
+		}
+		Node newNode = creatNewNode();
+		if (pos == 1) {
+			newNode.setNext(head);
+			head = newNode;
+			return;
+		}
+		Node temp = head;
+		for (int i = 1; i < pos - 1; i++) {
+			temp = temp.getNext();
+		}
+		newNode.setNext(temp.getNext());
+		temp.setNext(newNode);
+	}
+	
+	public void deleteByPosition(int pos) {
+		if (pos <= 0 || pos > count || head == null) {
+			System.out.println("Invalid position or empty list.");
+			return;
+		}
+		if (pos == 1) {
+			head = head.getNext();
+			count--;
+			return;
+		}
+		Node temp = head;
+		for (int i = 1; i < pos - 1; i++) {
+			temp = temp.getNext();
+		}
+		if (temp.getNext() != null) {
+			temp.setNext(temp.getNext().getNext());
+			count--;
+		}
+	}
+	
+}//class
+
+
+
+//////////////////////////////////////
+***************************************	MAIN 
+//////////////////////////////////////
+
+package SinglyLinkedList;
+
+import java.util.Scanner;
+
+public class MainClass {
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int choice,data;
+		
+		Singly_Linked_List sll = new Singly_Linked_List();
+		
+		
+		do 
+		{
+			System.out.println("\n\t...............MENU.............."+
+								"\n\t1) Add At Start."+
+								"\n\t2) Add At End."+
+								"\n\t3) Add At Middle."+
+								"\n\t4) Count of Nodes"+
+								"\n\t5) Update the node."+
+								"\n\t6) Delete At Start."+
+								"\n\t7) Delete At End."+
+								"\n\t8) Delete At Middle."+
+								"\n\t9) Reverse The List."+
+								"\n\t10) Add By Position"+
+								"\n\t11) Delete By Position"+
+								"\n\t12) Print Reverse."+
+								"\n\t99) Display"+
+								"\n\t0) Exit");
+			System.out.println("Enter the choice :: ");
+			choice = sc.nextInt();
+			
+			switch (choice) 
+			{
+			case 0:
+					System.exit(0);
+					break;
+			case 1:
+					sll.addAtStart();
+					break;
+			case 2:
+					sll.addAtEnd();
+					break;
+			case 3:
+				System.out.println("Enter Position:: ");
+					sll.addAtMiddle(sc.nextInt());
+					break;
+			case 4:
+					System.out.println("Total Nodes present are:: ");
+					System.out.println(sll.nodesCount());
+					break;
+			case 5:
+					sll.updateNode();
+					break;
+			case 6:
+					sll.deleteAtStart();
+					break;
+			case 7:
+					sll.deleteAtEnd();
+					break;
+			case 8:
+					sll.deleteAtMiddle();
+					break;
+			case 9:
+					sll.reverseList();
+					break;
+			case 12:
+					sll.printReverse();
+					break;
+			case 10:
+					System.out.println("Enter the Position");
+					sll.addByPosition(sc.nextInt());
+					break;
+			case 11:
+					System.out.println("Enter the Position");
+					sll.deleteByPosition(sc.nextInt());
+					break;
+			case 99:
+					System.out.println("\n--------------------------------------------");
+					sll.display();
+					System.out.println("\n--------------------------------------------");
+					break;
+			}	
+		}while(choice != 0);
+	}//main
+
+}//class
+
+
+
+
+////////////////////////////////////////////////////////
+*******************************************************
+////////////////////////////////////////////////////////
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	5) Update the node.
+	6) Delete At Start.
+	7) Delete At End.
+	8) Delete At Middle.
+	9) Reverse The List.
+	10) Print Reverse.
+	99) Display
+	0) Exit
+Enter the choice :: 
+1
+Enter the data:: 
+10
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	5) Update the node.
+	6) Delete At Start.
+	7) Delete At End.
+	8) Delete At Middle.
+	9) Reverse The List.
+	10) Print Reverse.
+	99) Display
+	0) Exit
+Enter the choice :: 
+2
+Enter the data:: 
+20
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	5) Update the node.
+	6) Delete At Start.
+	7) Delete At End.
+	8) Delete At Middle.
+	9) Reverse The List.
+	10) Print Reverse.
+	99) Display
+	0) Exit
+Enter the choice :: 
+2
+Enter the data:: 
+20
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	5) Update the node.
+	6) Delete At Start.
+	7) Delete At End.
+	8) Delete At Middle.
+	9) Reverse The List.
+	10) Print Reverse.
+	99) Display
+	0) Exit
+Enter the choice :: 
+2
+Enter the data:: 
+20
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	5) Update the node.
+	6) Delete At Start.
+	7) Delete At End.
+	8) Delete At Middle.
+	9) Reverse The List.
+	10) Print Reverse.
+	99) Display
+	0) Exit
+Enter the choice :: 
+2
+Enter the data:: 
+30
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	5) Update the node.
+	6) Delete At Start.
+	7) Delete At End.
+	8) Delete At Middle.
+	9) Reverse The List.
+	10) Print Reverse.
+	99) Display
+	0) Exit
+Enter the choice :: 
+99
+
+--------------------------------------------
+10->20->20->20->30->
+--------------------------------------------
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	5) Update the node.
+	6) Delete At Start.
+	7) Delete At End.
+	8) Delete At Middle.
+	9) Reverse The List.
+	10) Print Reverse.
+	99) Display
+	0) Exit
+
+
+
+
+////////////////////////////////////////////////////////////
+Enter the choice :: 
+10
+30 20 20 20 10 
+
+	...............MENU..............
+	1) Add At Start.
+	2) Add At End.
+	3) Add At Middle.
+	4) Count of Nodes
+	5) Update the node.
+	6) Delete At Start.
+	7) Delete At End.
+	8) Delete At Middle.
+	9) Reverse The List.
+	10) Print Reverse.
+	99) Display
+	0) Exit
+Enter the choice :: 

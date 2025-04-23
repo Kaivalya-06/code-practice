@@ -1,0 +1,122 @@
+package StackPackage;
+
+
+
+public class StringStack {
+
+	
+
+	private int size;
+
+	private char arr[];
+
+	private int top;
+
+	
+
+
+
+	public StringStack() {
+
+		size=26;
+
+		arr= new char[size];
+
+		top=-1;
+
+	}
+
+	
+
+	public void push(char ch) {
+
+		if(isFull()) {
+
+			System.out.println("stack is full");
+
+			return;
+
+		}
+
+		arr[++top]=ch;
+
+	}
+
+	
+
+	public char pop() {
+
+		if(isEmpty()) {
+
+			System.out.println("Stack is empty");
+
+		}
+
+		char s= arr[top--];
+
+		return s;
+
+		
+
+	}
+
+	public boolean isEmpty() {
+
+		return (top==-1);
+
+	}
+
+	
+
+	public boolean isFull() {
+
+		return (top == size-1);
+
+	}
+
+	
+
+////////////////////////////////////////////////////////////
+/*MAIN*/
+	public static void main(String[] args) {
+
+		StringStack s= new StringStack();
+
+		int m=65;
+
+		String ans="";
+
+		
+
+		for(int i=0;i<26;i++) {
+
+			char k = (char)(m+i) ;
+
+			s.push(k);			
+
+			
+
+		}
+
+		
+
+		for(int i=0;i<26;i++) {
+
+			ans = ans + (s.pop())+"  ";
+
+			
+
+		}
+
+		System.out.println(ans);
+	}
+}
+
+
+
+//////////////////output
+
+
+Z  Y  X  W  V  U  T  S  R  Q  P  O  N  M  L  K  J  I  H  G  F  E  D  C  B  A  
+
+
