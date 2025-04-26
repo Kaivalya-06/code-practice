@@ -1,0 +1,409 @@
+----------------------------------------------------------------------
+Node
+----------------------------------------------------------------------
+package office.ll;
+
+public class Node {
+	private int data;
+	private Node next;
+	public Node() {
+		data=0;
+		next=null;
+	}
+	public int getData() {
+		return data;
+	}
+	public void setData(int data) {
+		this.data = data;
+	}
+	public Node getNext() {
+		return next;
+	}
+	public void setNext(Node next) {
+		this.next = next;
+	}
+}
+
+--------------------------------------------------------------------
+Class
+--------------------------------------------------------------------
+package office.ll;
+
+import java.util.Scanner;
+
+public class EvenOddLLClass {
+	private Node head=null;
+	private Node evenHead = null;
+	private Node oddHead = null;
+	
+	Scanner sc=new Scanner(System.in);
+	public void addData() {
+		Node n=new Node();
+		System.out.print("Enter the data");
+		int value=sc.nextInt();
+		n.setData(value);
+		n.setNext(null);
+		if(head==null) {
+			head=n;
+		}
+		else {
+			Node temp=head;
+			while(temp.getNext()!=null) {
+				temp=temp.getNext();
+			}
+			temp.setNext(n);
+		}
+	}
+	
+	
+	public void addEnd() {
+		Node n=new Node();
+		System.out.println("Enter the data");
+		int value=sc.nextInt();
+		n.setData(value);
+		n.setNext(null);
+		if(head==null) {
+			head=n;
+			return;
+		}
+		Node temp=head;
+		while(temp.getNext()!=null) {
+			temp=temp.getNext();
+		}
+		temp.setNext(n);
+		System.out.println("Data entered at end");
+	}
+	
+	public void addBetween(int data) {
+	if(head==null) {
+		System.out.println("List is empty");
+	}
+	Node n=new Node();
+	System.out.println("Enter the data");
+	int value=sc.nextInt();
+	n.setData(value);
+	n.setNext(null);
+	Node temp=head;
+	while(temp!=null) {
+		if(temp.getData()==data) {
+			n.setNext(temp.getNext());
+			temp.setNext(n);
+			System.out.println("Node added succesfully");
+			return;
+		}
+		temp=temp.getNext();
+	}
+	if(temp==null) {
+		System.out.println("Value does not exist in list");
+	}
+	}
+	
+	public Node findMax() {
+		Node max = head;
+		for(Node i = head; i != null; i = i.getNext()) {
+			if(i.getData() > max.getData()) {
+				max = i;
+			}
+		}
+		
+		return max;
+	}
+	
+	public int findOccurance(int value) {
+		int count = 0;
+		for(Node i = head; i != null; i = i.getNext()) {
+			if(value == i.getData()) {
+				count++;
+			}
+		}
+		
+		if(count == 0) {
+			return -1;
+		} else {			
+			return count;
+		}
+	}
+	
+	public void EvenOddLL() {
+	    Node temp = head;
+	    Node evenTail = null, oddTail = null;
+
+	    while (temp != null) {
+	        if (temp.getData() % 2 == 0) {
+	            if (evenHead == null) {
+	                evenHead = temp;
+	                evenTail = evenHead;
+	            } else {
+	                evenTail.setNext(temp);
+	                evenTail = evenTail.getNext();
+	            }
+	        } else {
+	            if (oddHead == null) {
+	                oddHead = temp;
+	                oddTail = oddHead;
+	            } else {
+	                oddTail.setNext(temp);
+	                oddTail = oddTail.getNext();
+	            }
+	        }
+	        temp = temp.getNext();
+	    }
+
+	    if (evenTail != null) evenTail.setNext(null);
+	    if (oddTail != null) oddTail.setNext(null);
+
+	    System.out.println("Even and Odd linked lists created.");
+	}
+	
+	public void evenDisplay() {
+	    if (evenHead == null) {
+	        System.out.println("even linked list is empty");
+	        return;
+	    }
+	    Node temp = evenHead;
+	    System.out.print("Odd Linked List: ");
+	    while (temp != null) {
+	        System.out.print(temp.getData() + " -> ");
+	        temp = temp.getNext();
+	    }
+	    System.out.println("NULL");
+	}
+
+	public void oddDisplay() {
+	    if (oddHead == null) {
+	        System.out.println("Odd linked list is empty");
+	        return;
+	    }
+	    Node temp = oddHead;
+	    System.out.print("Odd Linked List: ");
+	    while (temp != null) {
+	        System.out.print(temp.getData() + " -> ");
+	        temp = temp.getNext();
+	    }
+	    System.out.println("NULL");
+	}
+
+	
+	public void display() {
+	if(head==null) {
+		System.out.println("Linked list is empty");
+		return;
+	}
+	 Node temp = head;
+     System.out.print("Linked List: ");
+     while (temp != null) {
+         System.out.print(temp.getData() + " -> ");
+         temp = temp.getNext();
+     }
+     System.out.println("NULL");
+	}
+	
+	
+
+
+
+}
+------------------------------------------------------------------------------------------------
+Client
+-------------------------------------------------------------------------------------------------
+package office.ll.client;
+
+import java.util.Scanner;
+
+import office.ll.EvenOddLLClass;
+
+public class EvenOddLLClient {
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+		EvenOddLLClass s=new EvenOddLLClass();
+		while(true) {
+			System.out.println("1.Add data");
+			System.out.println("2.Add at the end");
+			System.out.println("3.Add data in between and give value after which data should be added");
+			System.out.println("4.Find max");
+			System.out.println("5:Find Occurance");
+			System.out.println("6:Even and Odd Linked list");
+			System.out.println("7.Display");
+			System.out.println("8:Even Display");
+			System.out.println("9:Odd Display");
+			System.out.println("0.Exit....");
+			int ch=sc.nextInt();
+			switch(ch) {
+			case 1:
+				s.addData();
+				break;
+			case 2:
+				s.addEnd();
+				break;
+			case 3:
+				System.out.println("Enter the value");
+				int value=sc.nextInt();
+				s.addBetween(value);
+				break;
+			case 4:
+				System.out.println("Max Node: "+s.findMax().getData());
+				break;
+			case 5:
+				System.out.println("Enter the value");
+				System.out.println("Count: "+s.findOccurance(sc.nextInt()));
+				break;
+			case 6:
+				s.EvenOddLL();
+				break;
+			case 7:
+				s.display();
+				break;
+			case 8:
+				s.evenDisplay();
+				break;
+			case 9:
+				s.oddDisplay();
+				break;
+			case 0:
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Enter the correct choice");
+					
+			}
+	}
+		
+}
+}
+
+
+--------------------------------------------------------------------------------------------------
+Output
+--------------------------------------------------------------------------------------------------
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+1
+Enter the data1
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+1
+Enter the data2
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+1
+Enter the data3
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+1
+Enter the data4
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+1
+Enter the data5
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+1
+Enter the data6
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+7
+Linked List: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> NULL
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+6
+Even and Odd linked lists created.
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+8
+Odd Linked List: 2 -> 4 -> 6 -> NULL
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....
+9
+Odd Linked List: 1 -> 3 -> 5 -> NULL
+1.Add data
+2.Add at the end
+3.Add data in between and give value after which data should be added
+4.Find max
+5:Find Occurance
+6:Even and Odd Linked list
+7.Display
+8:Even Display
+9:Odd Display
+0.Exit....

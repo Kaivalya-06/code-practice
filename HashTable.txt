@@ -1,0 +1,132 @@
+package HashTables;
+
+import java.util.Scanner;
+
+public  class HashTable_Using_Array 
+{
+	int size;
+	int []hashTable;
+	int key;
+	Scanner sc = new Scanner(System.in);
+	
+	public  void init()
+	{
+		System.out.println("Enter the size :: ");
+		size = sc.nextInt();
+		hashTable = new int[size];
+		for(int i=0;i<size;i++)
+			hashTable[i] = -1;
+	}
+	
+	public int hashFunc(int val)
+	{
+		key = val%size;
+		return key;
+	}
+	
+	public void add(int val)
+	{
+		
+		int key = hashFunc(val);
+		if(hashTable[key] == -1)
+			hashTable[key] = val;
+		else {
+			int i;
+			for(i=key+1;hashTable[i] !=-1;i=(i+1)%size);
+			hashTable[i] = val;
+		}
+	}
+	
+	public void display()
+	{
+		for(int i=0;i<size;i++)
+		{
+			System.out.println(hashTable[i]);
+		}
+	}
+	
+	public int search(int val)
+	{
+		int key = -1;
+		key = hashFunc(val);
+		if(hashTable[key] == val)
+			return key;
+		else {
+			int i;
+			for(i = key+1;hashTable[i] != val;i=(i+1)%size);
+		}
+		return key;
+	}
+	
+	public void delete(int value) {
+        int index = value % size;
+        
+ 
+        while (hashTable[index] != value) {
+            index = (index + 1) % size; 
+            if (index == value % size) 
+            {
+                return; 
+            }
+        }
+
+        if (hashTable[index] == value) 
+        {
+            hashTable[index] = -1;
+        }
+        else
+        	System.out.println("Not Found !!");
+    }
+
+}
+
+----------------------------------------------
+
+package HashTables;
+
+import java.util.Scanner;
+
+public class HashTablemainClass {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		HashTable_Using_Array hash = new HashTable_Using_Array();
+		hash.init();
+		int choice = 0;
+		do {
+			
+			System.out.println("\n\t...........MENU.............."+
+								"\n\t 1-> Add."+
+								"\n\t 2-> Delete."+
+								"\n\t 3-> Display."+
+								"\n\t 4-> Search."+
+								"\n\t 0-> exit");
+			System.out.println("Enter Your Choice :: ");
+			choice = sc.nextInt();
+			
+			switch (choice) {
+				case 0:
+						System.exit(0);
+						break;
+				case 1:
+						System.out.println("Enter the value :: ");
+						hash.add(sc.nextInt());
+						break;
+				case 3:
+						hash.display();
+						break;
+				case 4:
+						System.out.println("Enter the value :: ");
+						System.out.println("Found At Position :: "+hash.search(sc.nextInt()));
+						break;
+				case 2:
+						System.out.println("Enter What You Want to Delete :: ");
+						hash.delete(sc.nextInt());
+						break;
+			}
+			
+		} while (choice != 0);
+
+	}
+
+}
