@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Of A Number</title>
+    <script>
+        num = 4;
+        function Factorial(num)
+        {
+            var f = 1;
+            while(num>0)
+            {
+                f*=num;
+                num--;
+            }
+            // document.write("<br>Factorial Of Number is : " + f);
+            // alert("Fact is : "+f);
+            document.getElementById("result").innerHTML="Factorial is : "+f;
+        }
+    </script>
+</head>
+<body>
+    <script>
+        // document.write("Factorial Of Number Is : "+Factorial(num)+"<br>")
+    </script>
+    <button onclick="Factorial(4)">Get Factorial</button>
+    <div id="result">...</div>
+</body>
+</html>
