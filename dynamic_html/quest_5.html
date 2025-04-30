@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum Digit</title>
+    <script>
+        function sumDigit(num)
+        {
+            var n = num;
+            var sum = 0;
+            var digit;
+            while (n > 0) {
+                digit = n % 10;
+                sum += digit;
+                n = Math.floor(n / 10);
+            }
+            document.getElementById("result").innerHTML="Sum is : "+sum;
+        }
+    </script>
+</head>
+<body>
+        <form action="">
+            Enter Number : 
+            <input type="number" name="num">
+            <input type="button" value="Find Sum" onclick="sumDigit(num.value)">;
+        </form>
+        <div id="result">...</div>
+</body>
+</html>

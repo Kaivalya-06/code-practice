@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Number</title>
+    <script>
+        function palindrome(num)
+        {
+            var rev=0,temp = num;
+            while (num != 0) {
+            r = num % 10;
+            rev = rev * 10 + r;
+            num = parseInt(num / 10);
+            }
+            if(temp == rev)
+                // document.write(temp+" is a palindrome");
+                document.getElementById("result").innerHTML="Is a palindrome";
+            else
+                // document.write(temp+" is not a palindrome");
+                document.getElementById("result").innerHTML="Is a palindrome";
+        }
+    </script>
+</head>
+<body>
+    <table style="background-color: red;">
+        <form action="">
+            <tr>
+                <td>
+                    Enter Number : 
+                </td>
+                <td>
+                    <input type="number" name="num">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="Calculate Factorial" onclick="palindrome(num.value)">
+                </td>
+            </tr>
+        </form>
+     </table>
+     <div id="result">...</div>
+</body>
+</html>

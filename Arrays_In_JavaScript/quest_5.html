@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reduce Function</title>
+    <script>
+        var arr = [10,23,3,54,11,7,98,36]
+        document.write(arr.toString()+"<br>");
+        var len = arr.length;
+        document.write("**********************<br>");
+        document.write("Calculate Sum Of Array<br>");
+        var sum = arr.reduce((s,v)=>s+v);
+        document.write("The Sum Of Array Elements is : "+sum);
+/*----------------------------------------------------------------*/
+
+        document.write("<br>**********************<br>");
+        document.write("Calculate Average Of Array<br>");
+        var avg = arr.reduce((s,v)=>s+v)/len;
+        document.write("The Average Of Array is : "+avg);
+
+/*-----------------------------------------------------------------*/
+        document.write("<br>**********************<br>");
+        document.write("Calculate Even or Odd Of Array<br>");
+        var even = arr.filter(v=>v%2==0);
+        document.write("<br>"+even+" Is Even<br>");
+        var odd = arr.filter(v=>v%2!=0);
+        document.write("<br>"+odd+" Is Odd<br>");
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
