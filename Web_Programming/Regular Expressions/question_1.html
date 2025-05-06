@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Expression</title>
+    <script>
+        function checkPattern()
+        {
+            var pattern = /^[A-Z]{1}[a-z]{1,}$/;
+            var fname = document.form.fname.value;
+            if(!pattern.test(fname))
+            {
+                document.getElementById("fname").innerHTML="Invalid First Name !!! <br>";
+            }
+
+            var lnpattern = /^[A-Z]{1}[a-z]{1,} [A-Z]{1}[a-z]{1,}/;
+            var fullname = document.form.lname.value;
+            if(!lnpattern.test(fullname))
+            {
+                document.getElementById("lname").innerHTML = "Invalid Full Name !!! <br>";
+            }
+
+            var phPattern = /^\d{2}-\d{10}$/;
+            var phno = document.form.number.value;
+            if(!phPattern.test(phno))
+            {
+                document.getElementById("number").innerHTML = "Invalid Phone Number !!! <br>";
+            }
+
+            var epattern = /^\w{8,15}@\w{1,}.\w{2,}/;
+            var email = document.form.email.value;
+            if(!epattern.test(email))
+            {
+                document.getElementById("email").innerHTML="Invalid E-Mail !!! <br>"
+            }
+
+
+
+            var cpattern = /^[PG-]{3}[A-Z]{3,8}$/;
+            var course = document.form.course.value;
+            if(!cpattern.test(course))
+            {
+                document.getElementById("course").innerHTML="Invalid Course Name !!! <br>"
+            }
+
+
+            var apattern = /^\d{4} \d{4} \d{4}$/;
+            var aadhar = document.form.aadhar.value;
+            if(!apattern.test(aadhar))
+            {
+                document.getElementById("aadhar").innerHTML="Invalid Aadhar Number !!! <br>"
+            }
+
+
+            var PAN = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+            var pan = document.form.PAN.value;
+            if(!PAN.test(pan))
+            {
+                document.getElementById("PAN").innerHTML="Invalid PAN Number !!! <br>"
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="" name="form">
+        Enter First Name : 
+        <input type="text" name="fname" value="">
+        <span id="fname"></span>
+        <br>
+        Enter Full Name :   
+        <input type="text" name="lname" value="">
+        <span id="lname"></span>
+        <br>
+        Enter Number with Country Code : 
+        <input type="text" value="" name="number">
+        <span id="number"></span>
+        <br>
+        Enter E-mail Id : 
+        <input type="text" name="email">
+        <span id="email"></span>
+        <br>
+        Enter Course Name : 
+        <input type="text" name="course">
+        <span id="course"></span>
+        <br>
+        Enter Aadhar Number : 
+        <input type="text" name="aadhar">
+        <span id="aadhar"></span>
+        <br>
+        Enter PAN Number : 
+        <input type="text" name="PAN">
+        <span id="PAN"></span>
+        <br>
+        <input type="button" value="submit" onclick="checkPattern()" style="text-align: center;">
+    </form>
+</body>
+</html>

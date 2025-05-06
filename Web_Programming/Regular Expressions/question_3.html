@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Three</title>
+    <script>
+        function validation()
+        {
+            var epattern = /^\w{8,15}@\w{1,}.\w{2,}/;
+            var email = document.form.email.value;
+            if(!epattern.test(email))
+            {
+                document.getElementById("email").innerHTML="<br>Invalid E-Mail !!! <br>"
+            }
+
+            if(document.form.gender.value == "") {
+                document.getElementById("gendererror").innerHTML= "<br>Select one radio button";
+                return;
+            }
+            if(document.f1.city.value == "00") {
+                document.getElementById("occ").innerHTML= "<br>Select Occupation option";
+                return;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="" name="form">
+        Enter Email : 
+        <input type="text" name="email">
+        <span id="email"></span>
+        <br>
+        Select Occupation : 
+        <select name="occupation" id="">
+            <option value="00">Select One</option>
+            <option value="01">Software Enginner</option>
+            <option value="02">Civil Enginner</option>
+            <option value="03">Mechanical Enginner</option>
+            <option value="04">Electrical Enginner</option>
+            <option value="05">Teacher</option>
+        </select>
+        <span id="occ"></span>
+        <br>
+        Select Gender : 
+        <input type="radio" name="gender" value="F">Female
+        <input type="radio" name="gender" value="M">Male
+        <span id="gendererror"></span>
+        <br>
+        <input type="button" value="Submit" onclick="validation()"/>
+    </form>
+</body>
+</html>

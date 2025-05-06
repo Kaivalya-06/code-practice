@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toogle Password</title>
+</head>
+<body>
+    <form name="form" action="">
+        Enter Password : 
+        <input type="password" id="pwd" name="pwd">
+        <br>
+        <input type="checkbox" name="box" onclick="showpwd()" id="check">Show Password
+    </form>
+    <script>
+        function showpwd()
+        {
+            var passwordInput = document.getElementById("pwd");
+            var checkbox = document.getElementById("check");
+
+            if (checkbox.checked) 
+            {
+                passwordInput.type = "text";
+            } 
+            else 
+            {
+                passwordInput.type = "password";
+            }        
+        }
+    </script>
+</body>
+</html>

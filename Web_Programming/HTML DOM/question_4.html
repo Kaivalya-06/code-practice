@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Text</title>
+    <script>
+        function fn() 
+        {
+        document.getElementById("abc").style.textShadow = "2px 2px 5px red, 0 0 25px blue, 0 0 5px darkblue";
+        }
+    </script>
+</head>
+<body>
+    <h1 onmouseover="fn()" id="abc" onmouseout="this.style.textShadow='none'">
+        This Is A Shadow Text
+    </h1>
+</body>
+</html>

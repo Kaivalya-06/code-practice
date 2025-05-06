@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Function</title>
+    <script>
+        var count = 2;
+        function Prime(num)
+        { 
+            if(num == 0 || num == 1)
+                document.write("Not Prime Number");
+            else{
+                for(let i=2;i<num;i++)
+                {
+                    if(num%i == 0){
+                        count++;
+                    }
+                }
+                if(count > 2){
+                    document.getElementById("result").innerHTML = "Is Not Prime !!!";
+                }
+                else{
+                    document.getElementById("result").innerHTML = "Is Prime !!!";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        Enter Number : 
+        <input type="number" name="num">
+        <br>
+        <input type="button" value="Find Sum" onclick="Prime(num.value)">;
+    </form>
+    <div id="result">...</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <script>
+        var hh=mm=ss=0;
+        var r;
+        function Start()
+        {
+            ss++;
+            if(ss==60)
+                mm++;
+            if(ss<10)
+                ss="0"+parseInt(ss);
+            if(mm<10)
+                mm="0"+parseInt(mm);
+            if(hh<10)
+                hh="0"+parseInt(hh);
+            var str = hh + " : "+mm+" : "+ss+" : ";
+            document.getElementById("time").innerHTML = str;
+            r = setTimeout(function(){Start()},1000);
+            // r= setInterval(function(){Start()},1000);
+        }
+        function Pause()
+        {
+            clearTimeout(r);
+        }
+        function Stop()
+        {
+            clearTimeout(r);
+            hh=mm=ss=0;
+            var str = hh + " : "+mm+" : "+ss+" : ";
+            document.getElementById("time").innerHTML = str;
+        }
+    </script>
+</head>
+<body>
+    <hr><br>
+    <span style="float:right;" id="time"></span>
+    <button type="button" onclick="Start()">Start</button>
+    <button type="button" onclick="Stop()">Stop</button>
+    <button type="button" onclick="Pause()">Pause</button>
+</body>
+</html>

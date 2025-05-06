@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../wp softwares/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btn1").click(function()
+        {
+            $("div").remove();
+        });
+        $("#btn2").click(function(){
+            $("div").empty();
+        })
+        });
+    </script>
+</head>
+<body>
+    <div style="background-color: gold; height: 300px; width: 300px;">
+        <h1>This Is H1 tag in Div</h1>
+    </div><br>
+    <button id="btn1">Remove Div</button>
+    <button id="btn2">Remove Content</button>
+</body>
+</html>

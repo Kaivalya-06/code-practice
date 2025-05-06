@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+    <script>
+        function fn()
+        {
+            var uidPattern = /^[A-Za-z\.]{5,15}$/;
+            var uid = document.form.uid.value;
+            if(!uidPattern.test(uid))
+        {
+            document.getElementById("result").innerHTML = "Invalid UID !!! <br>"
+        }
+
+            var pwdPattern = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&])[A-Za-z0-9!@#$%^&*]{5,15}$/;
+            var pwd = document.form.pwd.value;
+            if(!pwdPattern.test(pwd))
+        {
+            document.getElementById("result").innerHTML = "Invalid PWD !!! <br>"
+        }
+        }
+    </script>
+</head>
+<body>
+    <form action="" name="form">
+        Enter UID :  
+        <input type="text" name="uid">
+        <br>
+        Enter PWD : 
+        <input type="text" name="pwd">
+        <br>
+        <span id="result"></span>
+        <input type="button" value="Submit" onclick="fn()">
+    </form>
+</body>
+</html>

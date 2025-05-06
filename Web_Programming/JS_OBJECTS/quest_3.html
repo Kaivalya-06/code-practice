@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL CLOCK</title>
+    <script>
+        function display()
+        {
+            var cdate = new Date();
+            var hh = cdate.getHours();
+            var mm = cdate.getMinutes();
+            var ss = cdate.getSeconds();
+            if(hh<10)
+                hh = "0"+hh;
+            if(mm<10)
+                mm = "0"+mm;
+            if(hh<10)
+                ss = "0"+ss;
+            var str = hh+" : "+mm+" : "+ss;
+            document.getElementById("time").innerHTML = str;
+        }
+    </script>
+</head>
+<body onload="setInterval(display,1000)">
+    <span style="float:right;" id="time"></span>
+    <br>    
+    <hr>
+</body>
+</html>

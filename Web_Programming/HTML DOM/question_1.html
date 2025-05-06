@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question One</title>
+    
+</head>
+<body style="text-align: center;">
+    <img src="../images/Hydrangeas.jpg" alt="" onmouseover="mousehover()" onmouseout="onmouseremove()" width="300" height="300" id="myimg">
+    <script>
+        var img = document.getElementById("myimg");
+        var h = img.height;
+        var w = img.width;
+        var s = img.src;
+        function mousehover()
+        {
+            img.height = 400;
+            img.width = 400;
+            img.src = "../images/Jellyfish.jpg";
+        }
+        function onmouseremove()
+        {
+            img.src="../images/Hydrangeas.jpg";
+            img.height = h;
+            img.width = w;
+        }
+    </script>
+</body>
+
+</html>

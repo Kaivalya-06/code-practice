@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Of Array</title>
+    <script>
+        var arr = [10,23,3,54,11,7,98,36];
+
+        document.write("************************");
+        document.write("<br> Sorting By Writing Another Function");
+        document.write("<br>"+arr);
+        function compare(val1,val2)
+        {
+            console.log(val1,val2);
+            return val1-val2;
+        }
+        document.write("<br>"+arr.sort(compare));
+
+
+        document.write("<br>************************");
+        document.write("<br> Sorting By Writing Annonymus Function");
+        document.write("<br>"+arr.sort(function(val1,val2)
+            {
+            return val1-val2;
+            }));
+
+
+
+        document.write("<br>************************");
+        document.write("<br> Sorting By Writing Arrow Function<br>");
+        document.write(arr.sort((val1,val2) => val1-val2));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

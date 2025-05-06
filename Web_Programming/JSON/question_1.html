@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <script>
+        function display() 
+        {
+            var str = '{"name": "John", "age": 30, "city": "New York"}';
+            // var str="null";
+            var obj = JSON.parse(str);
+            document.write("Name: " + obj.name + "<br>");
+            document.write("Age: " + obj.age + "<br>");
+            document.write("City: " + obj.city + "<br>");
+            document.write("JSON String: " + str + "<br>");
+            var str1;
+            var obj1 = JSON.parse(str1);
+            document.write(obj1);
+        }
+
+    </script>
+</head>
+<body>
+    <button type="button" onclick="display()"> Display Info</button>
+</body>
+</html>

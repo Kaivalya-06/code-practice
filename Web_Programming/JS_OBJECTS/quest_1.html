@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Question</title>
+    <script>
+        function fun1(value)
+        {
+            var str = value
+            document.write("<br>"+str.length);
+            document.write("<br>************************");
+            var upper = str.toUpperCase();
+            document.write("<br>"+upper);
+            var lower = str.toLowerCase();
+            document.write("<br>************************");
+            document.write("<br>"+lower)
+            let indexOfW = str.indexOf("W");
+            document.write("<br>************************");
+            document.write("<br>"+indexOfW);
+            document.write("<br>************************");
+            document.write("<br>"+str.charAt(4)+" : "+str.charCodeAt(4));
+            str1 = "Hello ";
+            document.write("<br>************************");
+            document.write("<br>"+str1.concat(str));
+            document.write("<br>************************");
+            document.write("<br>"+str.split(" "));
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        Enter Name : 
+        <input type="text" name="str">
+        <br>
+        <input type="button" value="Submit" onclick="fun1(str.value)">
+    </form>
+    <div id="result">...</div>
+</body>
+</html>

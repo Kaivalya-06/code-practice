@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Show</title>
+    <script>
+        var arr = ["/images/bank_logo.jpeg","/images/browesr.jpg","/images/Desert.jpeg","/images/Hydrangeas.jpg","/images/Folder.jpg","/images/Desktop.jpg",]
+        var idx = 0;
+        function Next()
+        {
+            idx++;
+            if(idx==arr.length)
+                idx=0;
+            document.getElementById("myimg").src = arr[idx];
+        }
+        function Previous()
+        {
+            idx--;
+            if(idx==-1)
+                idx=arr.length-1;
+            document.getElementById("myimg").src = arr[idx];
+        }
+    </script>
+</head>
+<body>
+    <hr>
+    <br><br>
+    <img src="/images/Jellyfish.jpg" alt="" width="100%" height="600" id="myimg">
+    <br>
+    <button type="button" onclick="Previous()">Previous</button>
+    <button type="button" onclick="Next()">Next</button>
+</body>
+</html>

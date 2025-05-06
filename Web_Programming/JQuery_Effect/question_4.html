@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 4</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="..\wp softwares\jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            alert("doc ready");
+            $("div").mouseover(function() {
+                $(this).animate({width:'+=100px',height:'+=100px',fontSize:'+=20px',backgroundColor:'red'});
+                $(this).animate({width:'+=100px',height:'+=100px',fontSize:'+=20px',backgroundColor:'blue'});
+                $(this).animate({width:'-=100px',height:'-=100px',fontSize:'-=20px',backgroundColor:'green'});
+                $(this).animate({width:'-=100px',height:'-=100px',fontSize:'-=20px',backgroundColor:'aqua'},);
+            })
+
+            $("div").mouseout(function() {
+                $(this).stop(true);
+            })
+            
+        })
+    </script>
+</head>
+<body>
+    <div style="height: 500px; width: 500px; background-color: aqua;">
+        Hello World
+    </div>
+</body>
+</html>

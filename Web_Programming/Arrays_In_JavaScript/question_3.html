@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESTRUCTURING ARRAY</title>
+    <script>
+        let arr = [3,5,7,9,11];
+        const[a,b,c,d,e] = [...arr];
+        document.write("<br>Using Destructuring for giving value to the variables<br>")
+        document.write("a : "+a+", b : "+b+", c : "+c+", d : "+d+", e : "+e);
+
+        document.write("<br> FIRST AND third elements : <br>");
+        const[x,,y]=[...arr];
+        document.write(x +"  "+y);
+        document.write("<br> FIRST AND LAST elements : <br>");
+        const[first,[...mid],last]=arr;
+        document.write(first +"  "+last);
+        document.write("<br>"+mid)
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

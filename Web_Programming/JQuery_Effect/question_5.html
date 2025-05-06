@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 5</title>
+    <script src="../wp softwares/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".slideUp").click(function(){
+                $("hr").slideUp(1000);
+            });
+            $(".slideDown").click(function(){
+                $("hr").slideDown(1000);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="height: 1000px; width: 1000px; background-color: aqua; text-align: center;">
+        <button class="slideDown">Slide Down</button><br>
+        <br>
+        <hr>
+        <br>
+        <button class="slideUp">Slide Up</button>
+    </div>
+</body>
+</html>

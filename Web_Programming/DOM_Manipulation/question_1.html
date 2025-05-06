@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <script>
+             function fun1() 
+        {
+            var img = ["../images/Desktop.jpg", "../images/Computer.jpg", "../images/Folder.jpg", "../images/Browser.jpg", "../images/WordDocument.jpg"];
+            for(var i = 0; i < img.length; i++) {
+                var pnode = document.getElementsByTagName("ul")[0];
+                var imgnode = document.createElement("img");
+                imgnode.setAttribute("src", img[i]);
+                imgnode.setAttribute("width", "200");
+                imgnode.setAttribute("height", "200");
+                pnode.replaceChild(imgnode, pnode.children[i]);
+            }
+        }
+
+            function changelist() {
+                var checkbox = document.getElementById("check");
+                var linodes = document.getElementsByTagName("li")
+                
+                if(checkbox.checked) {
+                    alert("checked");
+                    for(var i = 0; i < linodes.length; i++) {
+                        var imgnode = document.createElement("img");
+                        var s = "../images/"+linodes[i].innerText+".jpg";
+                        imgnode.setAttribute("src", s);
+                        imgnode.setAttribute("width", "200");
+                        imgnode.setAttribute("height", "200");
+                        linodes[i].replaceChild(imgnode,linodes[i].firstChild);
+                    }
+                }          
+            }
+    </script>
+</head>
+<body>
+    <ul>
+        <li>Desktop</li>
+        <li>Computer</li>
+        <li>Folder</li>
+        <li>Browser</li>
+        <li>Worddocument</li>
+        <button onclick="fun1()">Replace</button>
+         <input type="checkbox" id="check" onclick="changelist()" />
+    </ul>
+</body>
+</html>

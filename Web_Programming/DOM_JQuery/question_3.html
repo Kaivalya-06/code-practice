@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .big {
+            font-size: 22px;
+            font-weight: bolder
+        }
+        .small {
+            font-size: 10px;
+            font-weight: 100
+        }
+
+        .shadow {
+            text-shadow: 2px 2px 2px maroon;
+            letter-spacing: 5px;
+        }
+        .box {
+            border: 2px dashed red;
+            padding:40px;
+        }
+    </style>
+    <script src="../wp softwares/jquery-3.7.1.min.js"></script>
+    <!-- <script src="jquery-3.7.1.min.j"></script> -->
+    <script>
+        $(document).ready(function() {
+            alert("doc ready");
+            $("p").hover(function(){
+                //modifying 1 CSS property
+                //$(this).css("background-color","red");
+                //modifying multiple CSS property
+                //$(this).css({"color":"red","text-decoration":"overline"})
+                $(this).addClass("big")
+            } , function() {
+                //modifying 1 CSS property
+                //$(this).css("background-color","blue");
+                //modifying multiple CSS property
+                //$(this).css({"color":"blue","text-decoration":"underline"})
+                $(this).removeClass("big")
+                $(this).addClass("small")
+            })
+
+            $("#mypara").dblclick(function() {
+                $(this).toggleClass("shadow box");
+            })
+            
+        })
+    </script>
+</head>
+<body>
+    <p> This is simple paragraph </p>
+
+    <br/>
+    <p id="mypara"> This is another paragraph </p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+    <script>
+        function findDate(value)
+        {
+            var cur_date = new Date();
+            var d1 = new Date(value);
+            document.write("<br> DATE : "+ d1.getDate() +"<br>");
+            document.write("<br> DAY :"+ d1.getDay() +"<br>");
+            document.write("<br> YEAR : "+ d1.getFullYear() +"<br>");
+            document.write("<br> MONTH : "+ d1.getMonth() +"<br>");
+            var age = (cur_date.getFullYear() - d1.getFullYear());
+            document.write(" <br> AGE : "+age);
+            // document.write(age);
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        Enter DOB : 
+        <input type="date" name="str">
+        <br>
+        <input type="button" value="Submit" onclick="findDate(str.value)">
+    </form>
+    <div id="result">...</div>
+</body>
+</html>

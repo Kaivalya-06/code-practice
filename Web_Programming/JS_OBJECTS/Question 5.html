@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var imgarr = ["../images/Computer.jpg", "../images/Desktop.jpg", "../images/Hydrangeas.jpg", "../images/Worddocument.jpg"];
+        var index = 0;
+
+        function next() {
+            index++;
+            if (index == imgarr.length)
+                index = 0;
+            document.getElementById("img").src = imgarr[index];
+        }
+
+        function prev() {
+            index--;
+            if (index == -1)
+                index = imgarr.length - 1;
+            document.getElementById("img").src = imgarr[index];
+        }
+
+        window.onload = function() {
+            document.getElementById("img").src = imgarr[index];
+            setInterval(next, 3000); 
+        }
+    </script>
+</head>
+<body>
+    <img src="../images/Desktop.jpg" width="500" height="500" id="img" />
+    <br/>
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+</body>
+</html>

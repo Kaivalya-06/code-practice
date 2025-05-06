@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+    <script>
+        function display() 
+        {
+            var str = '{"name": "John", "age": 30, "city": "New York"},{"name": "Jane", "age": 25, "city": "Los Angeles"},{"name": "Mike", "age": 35, "city": "Chicago"},{"name": "Sara", "age": 28, "city": "Miami"},{"name": "Tom", "age": 40, "city": "Seattle"}';
+            var obj = JSON.parse("[" + str + "]");
+            var table = document.write("<table border='1'><tr><th>Name</th><th>Age</th><th>City</th></tr>");
+            for (var i = 0; i < obj.length; i++) 
+            {
+               document.write(table += "<tr><td>" + obj[i].name + "</td><td>" + obj[i].age + "</td><td>" + obj[i].city + "</td></tr>");
+            }
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="display()">click me</button>
+</body>
+</html>

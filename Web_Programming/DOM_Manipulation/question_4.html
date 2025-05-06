@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 5</title>
+    <script>
+        function openwind() 
+        {
+            // "<button>Click Me</button>"
+            var h = prompt("Enter Height of the window");
+            var w = prompt("Enter Width of the window");
+            var x = prompt("Enter X coordinate of the window");
+            var y = prompt("Enter y coordinate of the window");
+            var str = prompt("Enter the string to be displayed in the new window");
+            newwindow = window.open("", "newwindow", "width=w, height=h, top=y, left=x");
+            newwindow.document.write("<br>" + str + "<br>");
+            document.getElementById("btn").innerText = "Close Window";
+            
+        }
+        function closewind() 
+        {
+            if(confirm("Are you sure you want to close the window?")) {
+                newwindow.close();
+            }
+            else {
+                alert("Window not closed");
+            }
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="openwind()" id="btn">Open Window</button>
+    <button type="button" onclick="closewind()" id="btn">Close Window</button>
+</body>
+</html>

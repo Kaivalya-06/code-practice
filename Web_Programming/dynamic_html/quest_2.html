@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Of A Number</title>
+    <script>
+        function power(num1,num2)
+        {
+            var f = num1**num2;
+            // document.write("<br>Factorial Of Number is : " + f);
+            alert("Answer is : "+f);
+            document.getElementById("result").innerHTML="Factorial is : "+f;
+        }
+    </script>
+</head>
+<body>
+     <table style="background-color: red;">
+        <form action="">
+            <tr>
+                <td>
+                    Enter 1st Number : 
+                </td>
+                <td>
+                    <input type="number" name="num1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Enter 2nd Number : 
+                </td>
+                <td>
+                    <input type="number" name="num2">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="Calculate Power" onclick="power(num1.value,num2.value)">
+                </td>
+            </tr>
+        </form>
+     </table>
+    <div id="result">...</div>
+</body>
+</html>

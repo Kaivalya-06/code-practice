@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <script src="../wp softwares/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function()
+    {
+        $("#second img").click(function(){
+            var newImageSrc = $(this).attr("src");
+                $("#first img").attr("src", newImageSrc);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="first" style="height: 100; width: 100px;">
+        <img src="../images/Desert.jpeg" alt="" id="one" style="height: 100; width: 100px;">
+    </div>
+    <div id="second" style="height: 200px; width: 500px;">
+        <img src="../images/Desktop.jpg" alt="" height="80px">
+        <img src="../images/browesr.jpg" alt="" height="80px">
+        <img src="../images/bank_logo.jpeg" alt="" height="80px">
+        <img src="../images/Jellyfish.jpg" alt="" height="80px">
+    </div>
+</body>
+</html>

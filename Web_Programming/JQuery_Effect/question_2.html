@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("img").mouseup(function() {
+                $(this).fadeOut(1000, function() {
+                    $(this).fadeIn(1000);
+                });
+            });
+            $("img").mousedown(function() {
+                $(this).fadeOut(1000, function() {
+                    $(this).fadeIn(1000);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <table border="1" id="table">
+        <tr>
+            <td><img src="../images/browesr.jpg" alt="" height="250px" width="250px"></td>
+            <td><img src="../images/Browser.jpg" alt="" height="250px" width="250px"></td>
+            <td><img src="../images/Computer.jpg" alt="" height="250px" width="250px"></td>
+        </tr>
+
+        <tr>
+            <td><img src="../images/Hydrangeas.jpg" alt="" height="250px" width="250px"></td>
+            <td><img src="../images/Desert.jpeg" alt="" height="250px" width="250px"></td>
+            <td><img src="../images/Folder.jpg" alt="" height="250px" width="250px"></td>
+        </tr>
+
+        <tr>
+            <td><img src="../images/Desert.jpeg" alt="" height="250px" width="250px"></td>
+            <td><img src="../images/Jellyfish.jpg" alt="" height="250px" width="250px"></td>
+            <td><img src="../images/Worddocument.jpg" alt="" height="250px" width="250px"></td>
+        </tr>
+    </table>
+</body>
+</html>

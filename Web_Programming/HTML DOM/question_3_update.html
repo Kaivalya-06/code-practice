@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function toggle()
+        {
+            var pwdInput = document.getElementById("pwd");
+            var img = document.getElementById("myimg");
+
+            if (pwdInput.type == "password") 
+            {
+                pwdInput.type = "text";
+                img.src = "../images/eye_open.jpeg";
+            }
+            else 
+            {
+                pwdInput.type = "password";
+                img.src = "../images/eye_close.png";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <form name="form" action="">
+        Enter Password:
+        <input type="password" id="pwd" name="pwd">
+        <br>
+        <img src="../images/eye_close.png" alt="Toggle Password" id="myimg" width="30px" height="30px" style="cursor:pointer;" onclick="toggle()">
+      </form>
+</body>
+</html>
