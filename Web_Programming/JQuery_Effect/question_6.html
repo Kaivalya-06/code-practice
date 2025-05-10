@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("button.open").click(function(event) {
+                $(this).closest('.summary').next('.details').remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="width: 1000px;">
+        <div class="summary">
+            <p> Question One </p><button type="button" class="open" style="float: right;">Toggle</button>
+        </div>
+        <div class="details">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus esse maiores id numquam explicabo. Vero impedit nobis dignissimos, culpa sint, quia ipsam, non error nam amet laboriosam eum maiores possimus!</p>
+            <!-- <a class="close" href="#"> Close details </a> -->
+        </div>
+        <div class="summary">
+            <p> Question Two</p><button type="button" class="open" style="float: right;">Toggle</button>
+        </div>
+        <div class="details" >
+            <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus sapiente eius quos esse? Laborum cumque porro corporis quidem dignissimos consequatur eaque recusandae provident ipsam obcaecati dolor explicabo voluptatem, quae minus!</p>
+            <!-- <a class="close" href="#"> Close details </a> -->
+        </div>
+        <div class="summary">
+            <p> Questuion Three</p><button type="button" class="open" style="float: right;">Toggle</button>
+        </div>
+        <div class="details">
+            <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet voluptas magni laudantium autem itaque assumenda ipsa temporibus exercitationem rem, enim perspiciatis optio molestias provident nesciunt voluptatem vel nobis omnis? Suscipit.</p>
+            <!-- <a class="close" href="#"> Close details </a> -->
+        </div>
+        <div class="summary">
+            <p> Question Four</p><button type="button" class="open" style="float: right;">Toggle</button>
+        </div>
+        <div class="details">
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque sequi architecto iure amet facere adipisci omnis, aperiam ipsa atque aspernatur, ea, id repellat unde? Veritatis recusandae voluptatem hic deleniti culpa.</p>
+            <!-- <a class="close" href="#"> Close details </a> -->
+        </div>
+        <div class="summary">
+            <p> Question Five</p><button type="button" class="open" style="float: right;">Toggle</button>
+        </div>
+        <div class="details">
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat illo voluptatum voluptatem. Laborum quaerat aspernatur totam recusandae doloribus laudantium tempora possimus et! Rerum quos dolorem eaque ad repudiandae aspernatur quam!</p>
+            <!-- <a class="close" href="#"> Close details </a> -->
+        </div>
+    </div>
+</body>
+</html>
