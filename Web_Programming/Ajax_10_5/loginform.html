@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#getDetails").click(function () {
+                var eno = $("#empno").val();
+                var url = "http://localhost:9192/details?empno=" + eno;
+                $.get(url, function (data, status) {
+                    if (status == "success") {
+                        $("#DETAILS").html(data);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        Enter empno :
+        <input type="number" name="empno" id="empno" />
+        <br />
+        <input type="button" value="DETAILS" id="getDetails" />
+    </form>
+    <br />
+    <div id="DETAILS"></div>
+</body>
+</html>

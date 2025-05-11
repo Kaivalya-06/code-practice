@@ -1,1 +1,0 @@
-document.write("Hello From External script");

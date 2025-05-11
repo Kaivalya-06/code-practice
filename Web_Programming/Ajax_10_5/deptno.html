@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            alert("document");
+            $("#getDetails").click(function () {
+                var deptno = $("#deptno").val();
+                var url = "http://localhost:9192/details?deptno=" + deptno;
+                alert(deptno);
+                $.get(url, function (data, status) {
+                    if (status == "success") {
+                        $("#DETAILS").html(data);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        Enter Deptno :
+        <input type="number" name="deptno" id="deptno" />
+        <br />
+        <input type="button" value="DETAILS" id="getDetails" />
+    </form>
+    <br />
+    <div id="DETAILS"></div>
+</body>
+</html>
