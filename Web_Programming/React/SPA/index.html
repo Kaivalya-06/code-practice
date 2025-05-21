@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script>
+        function GoTo(pageName)
+        {
+            var refrence = document.getElementById("root");
+            if(pageName == 'home'){
+                refrence.innerHTML = `<h1>Welcome To Home Page</h1>`;
+            }
+            else if(pageName == 'about'){
+                refrence.innerHTML = `<h1>Know About Us!!!</h1>`;
+            }
+            else if(pageName == 'contact'){
+                refrence.innerHTML = `<h1>Contact Us...</h1>`;
+            }
+        }
+        GoTo("home");
+    </script>
+</head>
+<body>
+    <a onclick="GoTo('home')">Home Page</a>|
+    <a onclick="GoTo('about')">About Us Page</a>|
+    <a onclick="GoTo('contact')">Contact Page</a>|
+    <hr>
+    <div id="root"></div>
+</body>
+</html>
